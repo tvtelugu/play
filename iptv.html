@@ -75,10 +75,6 @@
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.2);
             color: #fff;
-            position: relative;
-            overflow: hidden;
-            width: 200px; /* Set a fixed width */
-            height: 200px; /* Set a fixed height to make it square */
         }
         .channel-box img {
             width: 24px;
@@ -91,22 +87,6 @@
         }
         .channel-box:hover {
             background: #444;
-        }
-        .channel-box::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 300%;
-            height: 300%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%);
-            transform: translate(-50%, -50%);
-            animation: galaxy 1.5s infinite linear;
-            z-index: 0;
-        }
-        .channel-box h2 {
-            margin: 0;
-            z-index: 1;
         }
         .grid-container {
             display: grid;
@@ -126,14 +106,9 @@
             align-items: center;
             padding: 15px;
             transition: transform 0.3s;
-            position: relative;
-            overflow: hidden;
-            padding-top: 100%; /* Maintain aspect ratio */
         }
         .card img {
             max-width: 100px;
-            position: absolute;
-            top: 10px;
         }
         .card h2 {
             font-size: 1rem;
@@ -208,10 +183,6 @@
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
-        }
-        @keyframes galaxy {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
         }
         footer {
             background-color: #141414;
@@ -825,7 +796,7 @@
 </div>
 </div>
 
-     <div id="overlay" class="overlay">
+       <div id="overlay" class="overlay">
         <div class="overlay-content">
             <img src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVTELUGU-B.png" alt="Logo" class="player-logo">
             <button class="close-btn" onclick="closeOverlay()">×</button>
