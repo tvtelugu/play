@@ -385,9 +385,12 @@
 
             function openPopupPlayer(channelId) {
                 const channel = channelsData.find(channel => channel.id === channelId);
+                console.log('Channel:', channel); // Debugging
                 if (channel && channel.videoData && channel.videoData.link) {
                     playerIframe.src = channel.videoData.link;
                     popupPlayer.style.display = 'block';
+                } else {
+                    console.error('Video link not found for channel:', channel);
                 }
             }
 
