@@ -1,1 +1,24 @@
-
+[
+  {
+    "name": "CNBC Tv18 Prime HD",
+    "id": "143",
+    "logo": "http://jiotv.catchup.cdn.jio.com/dare_images/images/CNBC_Tv18_Prime_HD.png",
+    "group": "News",
+    "link": "https://fifaxbd.fun/JIOxRANAPK/stream.m3u8?id=143&e=.m3u8",
+    "language": "English",
+    "license_key": "",
+    "k": "",
+    "kid": ""
+  },
+    {
+    "name": "Janadesh News",
+    "id": "3023",
+    "logo": "http://jiotv.catchup.cdn.jio.com/dare_images/images/Janadesh_News.png",
+    "group": "News",
+    "link": "https://fifaxbd.fun/JIOxRANAPK/stream.m3u8?id=3023&e=.m3u8",
+	"language": "Hindi",
+    "license_key": "",
+    "k": "",
+    "kid": ""
+  }
+]
