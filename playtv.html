@@ -26,7 +26,7 @@
             content: "";
             position: absolute;
             top: 0;
-            left: 0;
+            left: 0%;
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.4);
@@ -81,8 +81,6 @@
             font-size: 16px;
             background-color: #ffffff;
             color: #2c3e50;
-        }
-        select, input {
         }
         select {
             -webkit-appearance: none;
@@ -168,7 +166,6 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-
         }
         .loader-container {
             position: fixed;
@@ -386,8 +383,8 @@
             function openPopupPlayer(channelId) {
                 const channel = channelsData.find(channel => channel.id === channelId);
                 console.log('Channel:', channel); // Debugging
-                if (channel && channel.videoData && channel.videoData.link) {
-                    playerIframe.src = channel.videoData.link;
+                if (channel && channel.link) {
+                    playerIframe.src = channel.link;
                     popupPlayer.style.display = 'block';
                 } else {
                     console.error('Video link not found for channel:', channel);
