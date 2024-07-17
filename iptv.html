@@ -61,8 +61,17 @@
             text-align: center;
         }
         .title h1 {
-            font-size: 2rem;
-            margin: 0;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            color: #fff;
+            font-size: 2.5em;
+            background: linear-gradient(90deg, #ff007a, #ff5e00, #f9c81f, #00b2ff, #8e2de2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: gradientShift 3s linear infinite;
         }
         .text-box {
             background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
