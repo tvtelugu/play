@@ -61,60 +61,17 @@
             text-align: center;
         }
         .title h1 {
-            font-size: 2rem;
-            margin: 0;
-        }
-        .channels {
-            display: flex;
-            gap: 15px; /* Reduced gap */
-            margin-top: 20px;
-        }
-        .channel-box {
-            background: #333;
-            border-radius: 10px;
-            padding: 10px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-            color: #fff;
-            position: relative;
-            overflow: hidden;
-            width: 120px; /* Set a fixed width */
-            height: 120px; /* Set a fixed height */
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-        }
-        .channel-box img {
-            width: 24px;
-            vertical-align: middle;
-            margin-right: 10px;
-        }
-        .channel-box a {
+            margin-bottom: 20px;
+            padding: 15px;
             color: #fff;
-            text-decoration: none;
-        }
-        .channel-box:hover {
-            background: #444;
-        }
-        /* Galaxy Animation Effect */
-        .channel-box::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
-            opacity: 0.3;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            animation: galaxy 2s infinite;
-        }
-        @keyframes galaxy {
-            0% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.5); }
-            100% { transform: translate(-50%, -50%) scale(1); }
+            font-size: 2.5em;
+            background: linear-gradient(90deg, #ff007a, #ff5e00, #f9c81f, #00b2ff, #8e2de2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: gradientShift 3s linear infinite;
         }
         .grid-container {
             display: grid;
@@ -234,21 +191,6 @@
         </a>
         <div class="title">
             <h1><a href="https://tvtelugu.vercel.app/">🕊 𝐓𝐕𝐓𝐄𝐋𝐔𝐆𝐔</a></h1>
-            <!-- Added Telegram and WhatsApp Channel Boxes -->
-            <div class="channels">
-                <div class="channel-box">
-                    <a href="https://t.me/tvtelugu" target="_blank">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram Logo">
-                        Telegram Channel
-                    </a>
-                </div>
-                <div class="channel-box">
-                    <a href="https://wa.me/1234567890" target="_blank">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo">
-                        WhatsApp Group
-                    </a>
-                </div>
-            </div>
         </div>
     </header>
     
@@ -825,7 +767,7 @@
 </div>
 </div>
 
-      <div id="overlay" class="overlay">
+    <div id="overlay" class="overlay">
         <div class="overlay-content">
             <img src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVTELUGU-B.png" alt="Logo" class="player-logo">
             <button class="close-btn" onclick="closeOverlay()">×</button>
