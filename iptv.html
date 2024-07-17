@@ -61,17 +61,23 @@
             text-align: center;
         }
         .title h1 {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 15px;
-            color: #fff;
-            font-size: 2.5em;
-            background: linear-gradient(90deg, #ff007a, #ff5e00, #f9c81f, #00b2ff, #8e2de2);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            animation: gradientShift 3s linear infinite;
+            font-size: 2rem;
+            margin: 0;
+        }
+        .text-box {
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            color: #000; /* Black text color */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            max-width: 600px; /* Adjust the maximum width */
+            text-align: center; /* Center align the text */
+            margin-bottom: 20px; /* Space between text box and content */
+            z-index: 1;
+        }
+        .text-box h1 {
+            margin: 0;
+            font-size: 1.5rem; /* Adjust the font size of the heading */
         }
         .grid-container {
             display: grid;
@@ -190,9 +196,14 @@
             <img src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVTELUGU-B.png" alt="Logo" class="logo">
         </a>
         <div class="title">
-           <center></center> <h1>🕊 𝐓𝐕𝐓𝐄𝐋𝐔𝐆𝐔 </h1></center>
+            <h1><a href="https://tvtelugu.vercel.app/">🕊 𝐓𝐕𝐓𝐄𝐋𝐔𝐆𝐔</a></h1>
         </div>
     </header>
+
+    <div class="text-box">
+        <h1>Welcome to TVTelugu! 🎉</h1>
+        <p>Enjoy a variety of Telugu TV channels and classic cinema. Stay tuned for more updates!</p>
+    </div>
     
        <div class="grid-container">
              <div class="card"> <a href="#" onclick="openOverlay(event, 'https://tgaadi-web.tech/stalker.m3u8?tv=12805')"><img src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico" alt="TVtelugu">
@@ -767,7 +778,7 @@
 </div>
 </div>
 
-    <div id="overlay" class="overlay">
+   <div id="overlay" class="overlay">
         <div class="overlay-content">
             <img src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVTELUGU-B.png" alt="Logo" class="player-logo">
             <button class="close-btn" onclick="closeOverlay()">×</button>
