@@ -266,9 +266,7 @@
             <input type="text" id="search-bar" placeholder="Search channels...">
         </div>
     </div>
-    <div class="grid-container" id="grid-container">
-        <!-- Channel cards will be dynamically inserted here -->
-    </div>
+    <div class="grid-container" id="grid-container"></div>
     <div class="popup-player" id="popup-player">
         <button class="popup-player-close" id="popup-player-close">✖</button>
         <iframe id="player-iframe" src="" allowfullscreen></iframe>
@@ -374,7 +372,9 @@
 
                 function openPopupPlayer(link) {
                     if (link) {
-                        playerIframe.src = link;
+                        // Open the video link in the Chrome extension
+                        const extensionUrl = `chrome-extension://cjfbmleiaobegagekpmlhmaadepdeedn/index.html#${encodeURIComponent(link)}`;
+                        playerIframe.src = extensionUrl;
                         popupPlayer.style.display = 'block';
                     } else {
                         console.error('Video link not found');
