@@ -333,7 +333,7 @@
                         const channelCard = document.createElement('div');
                         channelCard.classList.add('channel-card');
                         channelCard.addEventListener('click', () => {
-                            openPopupPlayer(channel.link);
+                            openPopupPlayer(channel.id, channel.link);
                         });
 
                         const channelLogo = document.createElement('img');
@@ -370,10 +370,10 @@
                 const playerIframe = document.getElementById('player-iframe');
                 const popupPlayerClose = document.getElementById('popup-player-close');
 
-                function openPopupPlayer(link) {
+                function openPopupPlayer(id, link) {
                     if (link) {
-                        // Open the video link in the Chrome extension
-                        const extensionUrl = `chrome-extension://cjfbmleiaobegagekpmlhmaadepdeedn/index.html#${encodeURIComponent(link)}`;
+                        // Open the video link in the Chrome extension with ID and link
+                        const extensionUrl = `chrome-extension://cjfbmleiaobegagekpmlhmaadepdeedn/index.html#id=${id}&link=${encodeURIComponent(link)}`;
                         playerIframe.src = extensionUrl;
                         popupPlayer.style.display = 'block';
                     } else {
