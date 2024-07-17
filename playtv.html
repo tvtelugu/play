@@ -335,7 +335,7 @@
                         const channelCard = document.createElement('div');
                         channelCard.classList.add('channel-card');
                         channelCard.addEventListener('click', () => {
-                            openPopupPlayer(channel.id);
+                            openPopupPlayer(channel.link);
                         });
 
                         const channelLogo = document.createElement('img');
@@ -367,27 +367,17 @@
                 languageSelect.addEventListener('change', renderChannels);
                 searchBar.addEventListener('input', renderChannels);
 
-                // Function to get URL parameter by name
-                function getUrlParameter(name) {
-                    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-                    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-                    const results = regex.exec(location.search);
-                    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-                }
-
                 // Popup player logic
                 const popupPlayer = document.getElementById('popup-player');
                 const playerIframe = document.getElementById('player-iframe');
                 const popupPlayerClose = document.getElementById('popup-player-close');
 
-                function openPopupPlayer(channelId) {
-                    const channel = channelsData.find(channel => channel.id === channelId);
-                    console.log('Channel:', channel); // Debugging
-                    if (channel && channel.link) {
-                        playerIframe.src = channel.link;
+                function openPopupPlayer(link) {
+                    if (link) {
+                        playerIframe.src = link;
                         popupPlayer.style.display = 'block';
                     } else {
-                        console.error('Video link not found for channel:', channel);
+                        console.error('Video link not found');
                     }
                 }
 
@@ -402,17 +392,6 @@
                         playerIframe.src = ''; // Stop the video when clicking outside
                     }
                 });
-
-                // Automatically open popup player if 'id' URL parameter is present
-                const channelId = getUrlParameter('id');
-                if (channelId) {
-                    const parsedId = parseInt(channelId, 10);
-                    if (!isNaN(parsedId)) {
-                        openPopupPlayer(parsedId);
-                    } else {
-                        console.error('Invalid channel ID:', channelId);
-                    }
-                }
             })
             .catch(error => {
                 console.error('Error fetching channel data:', error);
