@@ -291,112 +291,114 @@
 
         // Fetch the channel data from the JSON file
         fetch('playtv.json')
-            .then(response => response.json())
-            .then(channelsData => {
-                const gridContainer = document.getElementById('grid-container');
-                const genreSelect = document.getElementById('genre-select');
-                const languageSelect = document.getElementById('language-select');
-                const searchBar = document.getElementById('search-bar');
+    .then(response => response.json())
+    .then(channelsData => {
+        const gridContainer = document.getElementById('grid-container');
+        const genreSelect = document.getElementById('genre-select');
+        const languageSelect = document.getElementById('language-select');
+        const searchBar = document.getElementById('search-bar');
 
-                // Populate the genre dropdown
-                const genres = [...new Set(channelsData.map(channel => channel.group))];
-                genres.forEach(genre => {
-                    const option = document.createElement('option');
-                    option.value = genre;
-                    option.textContent = genre;
-                    genreSelect.appendChild(option);
-                });
+        // Populate the genre dropdown
+        const genres = [...new Set(channelsData.map(channel => channel.group))];
+        genres.forEach(genre => {
+            const option = document.createElement('option');
+            option.value = genre;
+            option.textContent = genre;
+            genreSelect.appendChild(option);
+        });
 
-                // Populate the language dropdown
-                const languages = [...new Set(channelsData.map(channel => channel.language))];
-                languages.forEach(language => {
-                    const option = document.createElement('option');
-                    option.value = language;
-                    option.textContent = language;
-                    languageSelect.appendChild(option);
-                });
+        // Populate the language dropdown
+        const languages = [...new Set(channelsData.map(channel => channel.language))];
+        languages.forEach(language => {
+            const option = document.createElement('option');
+            option.value = language;
+            option.textContent = language;
+            languageSelect.appendChild(option);
+        });
 
-                // Function to render the channels based on filters
-                function renderChannels() {
-                    gridContainer.innerHTML = ''; // Clear the grid
-                    const searchQuery = searchBar.value.toLowerCase();
-                    const selectedGenre = genreSelect.value;
-                    const selectedLanguage = languageSelect.value;
-                    const filteredChannels = channelsData.filter(channel => {
-                        const matchesGenre = selectedGenre === '' || channel.group === selectedGenre;
-                        const matchesLanguage = selectedLanguage === '' || channel.language === selectedLanguage;
-                        const matchesSearch = channel.name.toLowerCase().includes(searchQuery);
-                        return matchesGenre && matchesLanguage && matchesSearch;
-                    });
-
-                    filteredChannels.forEach(channel => {
-                        const channelCard = document.createElement('div');
-                        channelCard.classList.add('channel-card');
-                        channelCard.addEventListener('click', () => {
-                            openPopupPlayer(channel.id, channel.link);
-                        });
-
-                        const channelLogo = document.createElement('img');
-                        channelLogo.src = channel.logo;
-                        channelLogo.alt = `${channel.name} Logo`;
-                        channelLogo.classList.add('channel-logo');
-
-                        const channelName = document.createElement('div');
-                        channelName.classList.add('channel-name');
-                        channelName.textContent = channel.name;
-
-                        const channelGenre = document.createElement('div');
-                        channelGenre.classList.add('channel-genre');
-                        channelGenre.textContent = channel.group;
-
-                        channelCard.appendChild(channelLogo);
-                        channelCard.appendChild(channelName);
-                        channelCard.appendChild(channelGenre);
-                        gridContainer.appendChild(channelCard);
-                    });
-                }
-
-                // Initial render
-                renderChannels();
-                hideLoader();
-
-                // Event listeners for filtering
-                genreSelect.addEventListener('change', renderChannels);
-                languageSelect.addEventListener('change', renderChannels);
-                searchBar.addEventListener('input', renderChannels);
-
-                // Popup player logic
-                const popupPlayer = document.getElementById('popup-player');
-                const playerIframe = document.getElementById('player-iframe');
-                const popupPlayerClose = document.getElementById('popup-player-close');
-
-                function openPopupPlayer(id, link) {
-                    if (link) {
-                        // Open the video link in the Chrome extension with ID and link
-                        const extensionUrl = `chrome-extension://cjfbmleiaobegagekpmlhmaadepdeedn/index.html#id=${id}&link=${encodeURIComponent(link)}`;
-                        playerIframe.src = extensionUrl;
-                        popupPlayer.style.display = 'block';
-                    } else {
-                        console.error('Video link not found');
-                    }
-                }
-
-                popupPlayerClose.addEventListener('click', () => {
-                    popupPlayer.style.display = 'none';
-                    playerIframe.src = ''; // Stop the video when closing
-                });
-
-                window.addEventListener('click', (event) => {
-                    if (event.target === popupPlayer) {
-                        popupPlayer.style.display = 'none';
-                        playerIframe.src = ''; // Stop the video when clicking outside
-                    }
-                });
-            })
-            .catch(error => {
-                console.error('Error fetching channel data:', error);
-                hideLoader();
+        // Function to render the channels based on filters
+        function renderChannels() {
+            gridContainer.innerHTML = ''; // Clear the grid
+            const searchQuery = searchBar.value.toLowerCase();
+            const selectedGenre = genreSelect.value;
+            const selectedLanguage = languageSelect.value;
+            const filteredChannels = channelsData.filter(channel => {
+                const matchesGenre = selectedGenre === '' || channel.group === selectedGenre;
+                const matchesLanguage = selectedLanguage === '' || channel.language === selectedLanguage;
+                const matchesSearch = channel.name.toLowerCase().includes(searchQuery);
+                return matchesGenre && matchesLanguage && matchesSearch;
             });
+
+            filteredChannels.forEach(channel => {
+                const channelCard = document.createElement('div');
+                channelCard.classList.add('channel-card');
+                channelCard.addEventListener('click', () => {
+                    console.log(`Opening channel: ${channel.name}, Link: ${channel.link}`);
+                    openPopupPlayer(channel.link);
+                });
+
+                const channelLogo = document.createElement('img');
+                channelLogo.src = channel.logo;
+                channelLogo.alt = `${channel.name} Logo`;
+                channelLogo.classList.add('channel-logo');
+
+                const channelName = document.createElement('div');
+                channelName.classList.add('channel-name');
+                channelName.textContent = channel.name;
+
+                const channelGenre = document.createElement('div');
+                channelGenre.classList.add('channel-genre');
+                channelGenre.textContent = channel.group;
+
+                channelCard.appendChild(channelLogo);
+                channelCard.appendChild(channelName);
+                channelCard.appendChild(channelGenre);
+                gridContainer.appendChild(channelCard);
+            });
+        }
+
+        // Initial render
+        renderChannels();
+        hideLoader();
+
+        // Event listeners for filtering
+        genreSelect.addEventListener('change', renderChannels);
+        languageSelect.addEventListener('change', renderChannels);
+        searchBar.addEventListener('input', renderChannels);
+
+        // Popup player logic
+        const popupPlayer = document.getElementById('popup-player');
+        const playerIframe = document.getElementById('player-iframe');
+        const popupPlayerClose = document.getElementById('popup-player-close');
+
+        function openPopupPlayer(link) {
+            if (link) {
+                console.log(`Opening player with Link: ${link}`);
+                const extensionUrl = `chrome-extension://cjfbmleiaobegagekpmlhmaadepdeedn/index.html#${encodeURIComponent(link)}`;
+                playerIframe.src = extensionUrl;
+                popupPlayer.style.display = 'block';
+            } else {
+                console.error('Video link not found');
+            }
+        }
+
+        popupPlayerClose.addEventListener('click', () => {
+            popupPlayer.style.display = 'none';
+            playerIframe.src = ''; // Stop the video when closing
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === popupPlayer) {
+                popupPlayer.style.display = 'none';
+                playerIframe.src = ''; // Stop the video when clicking outside
+            }
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching channel data:', error);
+        hideLoader();
+    });
+
     </script>
 </body>
 </html>
