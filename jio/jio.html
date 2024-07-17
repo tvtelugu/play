@@ -10,19 +10,18 @@
     <style>
         body {
             font-family: 'Wittgenstein', serif;
-            background: url('https://images.pexels.com/photos/4840134/pexels-photo-4840134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center fixed; /* Background image */
+            background: url('https://images.pexels.com/photos/4840134/pexels-photo-4840134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1') no-repeat center center fixed;
             background-size: cover;
-            color: #2c3e50; /* Dark blue text color */
+            color: #2c3e50;
             display: flex;
             flex-direction: column;
             align-items: center;
             margin: 0;
             padding: 20px;
-            overflow: auto; /* Allow scrolling */
-            position: relative; /* Added relative position for pseudo-element */
+            overflow: auto;
+            position: relative;
         }
 
-        /* Pseudo-element for the black glass overlay */
         body::before {
             content: "";
             position: absolute;
@@ -30,9 +29,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.4); /* 40% black overlay for glass effect */
-            backdrop-filter: blur(10px); /* Optional: Adds blur effect for glass-like appearance */
-            z-index: -1; /* Ensure it stays behind other content */
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            z-index: -1;
         }
 
         h1 {
@@ -41,12 +40,12 @@
             margin-bottom: 20px;
             padding: 15px;
             color: #fff;
-            font-size: 2.5em; /* Adjusted size for better visibility */
-            background: linear-gradient(90deg, #ff007a, #ff5e00, #f9c81f, #00b2ff, #8e2de2); /* Multicolor gradient */
-            background-clip: text; /* Clips background to text */
-            -webkit-background-clip: text; /* Needed for WebKit browsers */
-            color: transparent; /* Hide the original text color */
-            animation: gradientShift 3s linear infinite; /* Animation for gradient */
+            font-size: 2.5em;
+            background: linear-gradient(90deg, #ff007a, #ff5e00, #f9c81f, #00b2ff, #8e2de2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            animation: gradientShift 3s linear infinite;
         }
         .title-logo {
             width: 100px;
@@ -71,27 +70,25 @@
             left: 10px;
             top: 50%;
             transform: translateY(-50%);
-            color: #2c3e50; /* Dark blue icon color */
+            color: #2c3e50;
         }
         select, input {
             width: 100%;
             padding: 10px 10px 10px 40px;
-            border: 1px solid #3498db; /* Blue border color */
+            border: 1px solid #3498db;
             border-radius: 5px;
             outline: none;
             font-size: 16px;
-            background-color: #ffffff; /* White background for inputs */
-            color: #2c3e50; /* Dark blue text color */
-            /* Removed transition for background color and box-shadow */
+            background-color: #ffffff;
+            color: #2c3e50;
         }
         select, input {
-            /* Removed hover effect */
         }
         select {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            background-color: #ffffff; /* White background for select */
+            background-color: #ffffff;
         }
         .select-container::after {
             content: 'arrow_drop_down';
@@ -101,10 +98,10 @@
             top: 50%;
             transform: translateY(-50%);
             pointer-events: none;
-            color: #2c3e50; /* Dark blue icon color */
+            color: #2c3e50;
         }
         .search-container .material-icons {
-            color: #2c3e50; /* Dark blue icon color */
+            color: #2c3e50;
         }
         .grid-container {
             display: grid;
@@ -114,11 +111,11 @@
             max-width: 1200px;
         }
         .channel-card {
-            background-color: #ffffff; /* White background for cards */
+            background-color: #ffffff;
             border-radius: 5px;
             overflow: hidden;
             text-align: center;
-            /* Removed transform effect and box-shadow */
+            cursor: pointer;
         }
         .channel-logo {
             height: 90px;
@@ -129,31 +126,31 @@
         .channel-name {
             font-size: 16px;
             font-weight: bold;
-            color: #2c3e50; /* Dark blue text color */
+            color: #2c3e50;
             margin: 10px 0;
         }
         .channel-genre {
             font-size: 14px;
-            color: #7f8c8d; /* Light grey text color for genre */
+            color: #7f8c8d;
             margin-bottom: 20px;
         }
         .popup-player {
-            display: none; /* Hidden by default */
+            display: none;
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.8); /* Dark background */
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 20px;
             border-radius: 10px;
-            z-index: 1000; /* High z-index to appear above other content */
+            z-index: 1000;
             width: 80%;
             max-width: 600px;
             color: white;
         }
         .popup-player iframe {
             width: 100%;
-            height: 315px; /* Standard 16:9 aspect ratio */
+            height: 315px;
             border: none;
             border-radius: 5px;
         }
@@ -171,7 +168,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: rgba(0, 0, 0, 0.8); /* Darker transparent background for loader */
+            background-color: rgba(0, 0, 0, 0.8);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -187,7 +184,7 @@
         .loader .dot {
             width: 15px;
             height: 15px;
-            background-color: #e50914; /* Netflix red color */
+            background-color: #e50914;
             border-radius: 50%;
             animation: bounce 0.6s infinite alternate;
         }
@@ -221,11 +218,10 @@
         footer {
             margin-top: 40px;
             padding: 10px;
-            background-color: #2c3e50; /* Dark blue background for footer */
-            color: #ffffff; /* White text color */
+            background-color: #2c3e50;
+            color: #ffffff;
             text-align: center;
             border-radius: 5px;
-            /* Removed box-shadow */
             width: 100%;
             max-width: 600px;
         }
@@ -333,9 +329,9 @@
                     filteredChannels.forEach(channel => {
                         const channelCard = document.createElement('div');
                         channelCard.classList.add('channel-card');
-
-                        const channelLink = document.createElement('a');
-                        channelLink.href = `Play.html?id=${channel.id}`;
+                        channelCard.addEventListener('click', () => {
+                            openPopupPlayer(channel.id);
+                        });
 
                         const channelLogo = document.createElement('img');
                         channelLogo.src = channel.logo;
@@ -350,19 +346,9 @@
                         channelGenre.classList.add('channel-genre');
                         channelGenre.textContent = channel.group;
 
-                        const playButton = document.createElement('button');
-                        playButton.textContent = 'Play';
-                        playButton.classList.add('play-button');
-                        playButton.addEventListener('click', () => {
-                            openPopupPlayer(channel.id);
-                        });
-
-                        channelLink.appendChild(channelLogo);
-                        channelLink.appendChild(channelName);
-                        channelLink.appendChild(channelGenre);
-
-                        channelCard.appendChild(channelLink);
-                        channelCard.appendChild(playButton);
+                        channelCard.appendChild(channelLogo);
+                        channelCard.appendChild(channelName);
+                        channelCard.appendChild(channelGenre);
                         gridContainer.appendChild(channelCard);
                     });
                 }
