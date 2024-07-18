@@ -489,13 +489,13 @@
                         const source1Button = document.createElement('button');
                         source1Button.classList.add('source-button');
                         source1Button.addEventListener('click', () => {
-                            showVideoPopup(`play.php?id=${channel.channel_id}`);
+                            showVideoPopup(`http://tvteluguweb.c1.is/play.php?id=${channel.channel_id}`);
                         });
 
                         const source2Button = document.createElement('button');
                         source2Button.classList.add('source-button');
                         source2Button.addEventListener('click', () => {
-                            showVideoPopup(`play.html?channel=${channel.channel_id}`);
+                            showVideoPopup(`http://tvteluguweb.c1.is/play.html?channel=${channel.channel_id}`);
                         });
 
                         const sourceButtonsContainer = document.createElement('div');
