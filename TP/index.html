@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™ || 𝐓𝐀𝐓𝐀𝐏𝐋𝐀𝐘 </title>
+    <title>🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™ || 𝐓𝐀𝐓𝐀𝐏𝐋𝐀𝐘</title>
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico">
     <link href="https://fonts.googleapis.com/css2?family=Wittgenstein:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -226,51 +226,33 @@
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.9);
         }
 
         .modal-content {
-            background-color: #000;
-            margin: 5% auto;
-            padding: 0;
-            border: none;
             width: 100%;
-            max-width: 800px;
             height: 100%;
-            max-height: 450px;
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
         }
 
         .close {
-            color: #fff;
             position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 40px;
             font-weight: bold;
             cursor: pointer;
+            z-index: 1001;
         }
 
-        .video-controls {
-            position: absolute;
-            bottom: 10px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-        }
-
-        .control-button {
-            color: #fff;
-            font-size: 24px;
-            cursor: pointer;
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
         }
     </style>
 </head>
@@ -309,15 +291,11 @@
         <p class="footer-text">© 2024 🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™. All rights reserved.</p>
     </footer>
 
-    <!-- Modal structure -->
-    <div class="modal" id="video-modal">
+    <!-- Modal Container -->
+    <div id="video-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <iframe id="video-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <div class="video-controls">
-                <span class="control-button material-icons" id="play-button">play_arrow</span>
-                <span class="control-button material-icons" id="pause-button">pause</span>
-            </div>
+            <iframe id="video-iframe" allowfullscreen></iframe>
         </div>
     </div>
 
@@ -326,8 +304,6 @@
         const modal = document.getElementById('video-modal');
         const iframe = document.getElementById('video-iframe');
         const closeModal = document.querySelector('.modal .close');
-        const playButton = document.getElementById('play-button');
-        const pauseButton = document.getElementById('pause-button');
 
         function showLoader() {
             loaderContainer.style.display = 'flex';
@@ -353,14 +329,6 @@
             if (event.target === modal) {
                 closeModalFn();
             }
-        });
-
-        playButton.addEventListener('click', function() {
-            iframe.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
-        });
-
-        pauseButton.addEventListener('click', function() {
-            iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
         });
 
         showLoader();
