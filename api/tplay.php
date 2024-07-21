@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MrSmart TV</title>
+   <title>🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™ - TP</title>
+     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico">
     <style>
         body {
             margin: 0;
@@ -65,7 +66,8 @@
                         key: videoConfig.key
                     }
                 },
-                width: "100%",
+               width: "100%",
+                height: "100%",
                 stretching: "bestfit",
                 autostart: true,
                 mute: false,
