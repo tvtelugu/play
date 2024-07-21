@@ -78,7 +78,7 @@
                     }
                 },
                 width: "100%",
-                height: "50%",
+                height: "20%",
                 stretching: "bestfit",
                 autostart: true,
                 mute: false,
