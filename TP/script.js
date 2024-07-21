@@ -61,5 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     categoryDropdown.addEventListener('change', filterChannels);
     closePopup.addEventListener('click', () => {
         videoPopup.style.display = 'none';
+        videoPlayer.pause(); // Pause the video when the popup is closed
+        videoPlayer.src = ''; // Clear the video source to stop playback
     });
 });
