@@ -14,13 +14,6 @@
             height: 100% !important;
             overflow: hidden; /* Prevent scrollbars */
         }
-
-        .error-message {
-            color: red;
-            font-size: 18px;
-            text-align: center;
-            margin-top: 20px;
-        }
     </style>
 </head>
 
