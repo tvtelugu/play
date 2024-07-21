@@ -26,7 +26,7 @@
     <?php 
     $id = isset($_GET['id']) ? intval($_GET['id']) : null;
     if ($id === null) {
-        
+        echo '<script src="https://cdn.jsdelivr.net/npm/disable-devtool"></script>';
         echo '<script>window.location.replace("https://t.me/tvtelugu");</script>';
         exit;
     }
