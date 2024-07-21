@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™ - TP</title>
-     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico">
+    <title>🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico">
     <style>
         body {
             margin: 0;
@@ -16,7 +16,41 @@
 
         #player-container {
             width: 100%; /* Full viewport width */
-            height: 100%; /* Full viewport height */
+            height: calc(100% - 50px); /* Full viewport height minus control panel height */
+            position: relative;
+        }
+
+        #controls-container {
+            width: 100%;
+            height: 50px;
+            position: absolute;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            color: #fff;
+        }
+
+        #controls-container button {
+            background: transparent;
+            border: 1px solid #fff;
+            color: #fff;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #controls-container button:hover {
+            background: #444;
+        }
+
+        .error-message {
+            color: #ff0000;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
         }
     </style>
 </head>
@@ -52,12 +86,17 @@
         }
         ?>
         <div id="player-container"></div>
+        <div id="controls-container">
+            <button id="playPauseBtn">Play</button>
+            <button id="volumeBtn">Mute</button>
+            <button id="fullscreenBtn">Fullscreen</button>
+        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script>
     <script>
         if (typeof videoConfig !== "undefined" && videoConfig.mpd && videoConfig.keyid && videoConfig.key) {
-            jwplayer("player-container").setup({
+            const player = jwplayer("player-container").setup({
                 file: videoConfig.mpd,
                 type: "dash",
                 drm: {
@@ -66,12 +105,42 @@
                         key: videoConfig.key
                     }
                 },
-               width: "100%",
+                width: "100%",
                 height: "100%",
                 stretching: "bestfit",
                 autostart: true,
                 mute: false,
                 primary: "html5"
+            });
+
+            document.getElementById('playPauseBtn').addEventListener('click', function() {
+                if (player.getState() === "PLAYING") {
+                    player.pause();
+                    this.textContent = "Play";
+                } else {
+                    player.play();
+                    this.textContent = "Pause";
+                }
+            });
+
+            document.getElementById('volumeBtn').addEventListener('click', function() {
+                if (player.getMute()) {
+                    player.setMute(false);
+                    this.textContent = "Mute";
+                } else {
+                    player.setMute(true);
+                    this.textContent = "Unmute";
+                }
+            });
+
+            document.getElementById('fullscreenBtn').addEventListener('click', function() {
+                if (player.getFullscreen()) {
+                    player.setFullscreen(false);
+                    this.textContent = "Fullscreen";
+                } else {
+                    player.setFullscreen(true);
+                    this.textContent = "Exit Fullscreen";
+                }
             });
         } else {
             console.error("Invalid data received from PHP script.");
