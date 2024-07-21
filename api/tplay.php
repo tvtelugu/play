@@ -9,9 +9,8 @@
     <style>
           #player-container {
             position: absolute;
-            top: 0;
-            left: 0;
-            background: #000;
+            width: 100% !important;
+            height: 100% !important;
         }
 
         .error-message {
@@ -68,8 +67,6 @@
                         key: videoConfig.key
                     }
                 },
-                width: "100%",
-                height: "20%",
                 autostart: true,
                 mute: false,
                 primary: "html5",
