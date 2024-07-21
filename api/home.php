@@ -311,154 +311,222 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(0, 0, 0, 0.5);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 24px;
-            color: #3498db;
-            font-weight: bold;
-            opacity: 1;
-            transition: opacity 0.3s;
             z-index: 10;
         }
 
-        .video-popup .loading-overlay.hidden {
-            opacity: 0;
-            visibility: hidden;
+        .video-popup .loading-overlay img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 10px;
         }
 
+        .video-popup .loading-overlay .loader {
+            display: flex;
+            gap: 10px;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1><img class="title-logo" src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico" alt="Logo">🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™ || 𝐓𝐀𝐓𝐀𝐏𝐋𝐀𝐘 </h1>
-    </header>
-    <div class="controls">
-        <div class="select-container">
-            <span class="material-icons">category</span>
-            <select id="genreFilter">
-                <option value="All">All</option>
-                <option value="Entertainment">Entertainment</option>
-                <option value="News">News</option>
-                <option value="Movies">Movies</option>
-                <option value="Music">Music</option>
-                <option value="Sports">Sports</option>
-                <option value="Kids">Kids</option>
-            </select>
-        </div>
-        <div class="search-container">
-            <span class="material-icons">search</span>
-            <input type="text" id="searchBox" placeholder="Search...">
-        </div>
-    </div>
-    <div class="grid-container"></div>
-    <div class="loader-container">
+    <div class="loader-container" id="loader-container">
         <div class="loader">
             <div class="dot"></div>
             <div class="dot"></div>
             <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
         </div>
-        <p class="footer-text">Loading content, please wait...</p>
     </div>
-    <div class="video-popup">
-        <div class="video-container">
-            <button class="close-btn">×</button>
-            <div class="loading-overlay">Loading...</div>
-            <iframe src="" frameborder="0" allowfullscreen></iframe>
+    <h1>
+        <img src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVTELUGU-B.png" alt="Title Logo" class="title-logo">
+        🕊 𝐓𝐀𝐓𝐀𝐏𝐋𝐀𝐘
+    </h1>
+    <div class="controls">
+        <div class="select-container">
+            <i class="material-icons">category</i>
+            <select id="genre-select">
+                <option value="">All Genres</option>
+            </select>
         </div>
+        <div class="search-container">
+            <i class="material-icons">search</i>
+            <input type="text" id="search-bar" placeholder="Search channels...">
+        </div>
+    </div>
+    <div class="grid-container" id="grid-container">
+        <!-- Channel cards will be dynamically inserted here -->
     </div>
     <footer>
-        <p class="footer-text">© 2023 🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™. All rights reserved.</p>
+        <p class="footer-text">© 2024 🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™. All rights reserved.</p>
     </footer>
+
+    <!-- Video Popup -->
+    <div class="video-popup" id="video-popup">
+        <div class="video-container">
+            <button class="close-btn" id="close-popup">✖</button>
+            <div class="loading-overlay" id="loading-overlay">
+                <img src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico" alt="Site Logo">
+                <div class="loader">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </div>
+            <iframe id="video-frame" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const genreFilter = document.getElementById('genreFilter');
-            const searchBox = document.getElementById('searchBox');
-            const gridContainer = document.querySelector('.grid-container');
-            const loaderContainer = document.querySelector('.loader-container');
-            const videoPopup = document.querySelector('.video-popup');
-            const videoContainer = document.querySelector('.video-container');
-            const closeBtn = document.querySelector('.close-btn');
-            const iframe = videoContainer.querySelector('iframe');
-            const loadingOverlay = videoContainer.querySelector('.loading-overlay');
+        const loaderContainer = document.getElementById('loader-container');
+        const videoPopup = document.getElementById('video-popup');
+        const videoFrame = document.getElementById('video-frame');
+        const closePopupButton = document.getElementById('close-popup');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const genreSelect = document.getElementById('genre-select');
+        const searchBar = document.getElementById('search-bar');
 
-            genreFilter.addEventListener('change', filterChannels);
-            searchBox.addEventListener('input', filterChannels);
-            closeBtn.addEventListener('click', closeVideoPopup);
+        function showLoader() {
+            loaderContainer.style.display = 'flex';
+        }
 
-            const channels = [
-                { id: 1, name: 'Star Sports 1 Telugu', genre: 'Sports', logo: 'https://upload.wikimedia.org/wikipedia/commons/5/56/Star_Sports_Logo.png', sources: ['https://www.youtube.com/watch?v=dQw4w9WgXcQ'] },
-                { id: 2, name: 'Gemini TV', genre: 'Entertainment', logo: 'https://upload.wikimedia.org/wikipedia/en/f/f0/Sun_Network_-_Gemini_TV.jpg', sources: ['https://www.youtube.com/watch?v=dQw4w9WgXcQ'] },
-                { id: 3, name: 'ETV Telugu', genre: 'Entertainment', logo: 'https://upload.wikimedia.org/wikipedia/commons/8/83/ETV_Telugu.jpg', sources: ['https://www.youtube.com/watch?v=dQw4w9WgXcQ'] },
-                { id: 4, name: 'TV9 Telugu', genre: 'News', logo: 'https://upload.wikimedia.org/wikipedia/commons/c/cc/Tv9telugu.png', sources: ['https://www.youtube.com/watch?v=dQw4w9WgXcQ'] },
-                { id: 5, name: 'Disney Channel', genre: 'Kids', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/Disney_Channel_logo.png/800px-Disney_Channel_logo.png', sources: ['https://www.youtube.com/watch?v=dQw4w9WgXcQ'] },
-                { id: 6, name: 'Gemini Movies', genre: 'Movies', logo: 'https://upload.wikimedia.org/wikipedia/en/c/cf/Gemini_Movies.jpg', sources: ['https://www.youtube.com/watch?v=dQw4w9WgXcQ'] },
-                { id: 7, name: 'Maa Music', genre: 'Music', logo: 'https://upload.wikimedia.org/wikipedia/en/9/9c/Star_Maa_Music.jpg', sources: ['https://www.youtube.com/watch?v=dQw4w9WgXcQ'] },
-                { id: 8, name: 'Sonic Nickelodeon', genre: 'Kids', logo: 'https://upload.wikimedia.org/wikipedia/commons/e/eb/Sonic_Nickelodeon_Logo.png', sources: ['https://www.youtube.com/watch?v=dQw4w9WgXcQ'] },
-            ];
+        function hideLoader() {
+            loaderContainer.style.display = 'none';
+        }
 
-            function showLoader() {
-                loaderContainer.style.display = 'flex';
-            }
+        function showVideoPopup(url) {
+            videoFrame.src = url;
+            loadingOverlay.style.display = 'flex'; // Show loading animation
+            videoPopup.classList.add('active');
 
-            function hideLoader() {
-                loaderContainer.style.display = 'none';
-            }
-
-            function showVideoPopup(source) {
-                videoPopup.classList.add('active');
-                loadingOverlay.classList.remove('hidden');
-                iframe.src = source;
-                iframe.onload = () => loadingOverlay.classList.add('hidden');
-            }
-
-            function closeVideoPopup() {
-                videoPopup.classList.remove('active');
-                iframe.src = '';
-            }
-
-            function filterChannels() {
-                const searchQuery = searchBox.value.toLowerCase();
-                const selectedGenre = genreFilter.value;
-                const filteredChannels = channels.filter(channel => {
-                    const matchesGenre = selectedGenre === 'All' || channel.genre === selectedGenre;
-                    const matchesSearch = channel.name.toLowerCase().includes(searchQuery);
-                    return matchesGenre && matchesSearch;
-                });
-                displayChannels(filteredChannels);
-            }
-
-            function displayChannels(channels) {
-                gridContainer.innerHTML = '';
-                channels.forEach(channel => {
-                    const card = document.createElement('div');
-                    card.classList.add('channel-card');
-                    card.innerHTML = `
-                        <img class="channel-logo" src="${channel.logo}" alt="${channel.name}">
-                        <div class="channel-name">${channel.name}</div>
-                        <div class="channel-genre">${channel.genre}</div>
-                        <div class="source-buttons">
-                            ${channel.sources.map(source => `<button class="source-button" data-source="${source}">▶</button>`).join('')}
-                        </div>
-                    `;
-                    gridContainer.appendChild(card);
-                });
-
-                document.querySelectorAll('.source-button').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const source = this.getAttribute('data-source');
-                        showVideoPopup(source);
-                    });
-                });
-            }
-
-            showLoader();
+            // Hide loading animation after 5 seconds
             setTimeout(() => {
-                hideLoader();
-                filterChannels();
-            }, 2000);
-        });
+                loadingOverlay.style.display = 'none';
+            }, 5000);
+        }
+
+        function hideVideoPopup() {
+            videoPopup.classList.remove('active');
+            videoFrame.src = '';
+            loadingOverlay.style.display = 'none'; // Hide loading animation
+        }
+
+        closePopupButton.addEventListener('click', hideVideoPopup);
+
+        showLoader();
+
+        // Function to save the state to local storage
+        function saveState() {
+            localStorage.setItem('selectedGenre', genreSelect.value);
+            localStorage.setItem('searchQuery', searchBar.value);
+        }
+
+        // Function to load the state from local storage
+        function loadState() {
+            const savedGenre = localStorage.getItem('selectedGenre');
+            const savedQuery = localStorage.getItem('searchQuery');
+
+            if (savedGenre) {
+                genreSelect.value = savedGenre;
+            }
+
+            if (savedQuery) {
+                searchBar.value = savedQuery;
+            }
+        }
+
+        // Fetch channels and initialize
+        fetch('channel.json')
+            .then(response => response.json())
+            .then(channelsData => {
+                const gridContainer = document.getElementById('grid-container');
+
+                const genres = [...new Set(channelsData.map(channel => channel.channel_genre))];
+                genres.forEach(genre => {
+                    const option = document.createElement('option');
+                    option.value = genre;
+                    option.textContent = genre;
+                    genreSelect.appendChild(option);
+                });
+
+                function renderChannels() {
+                    gridContainer.innerHTML = '';
+                    const searchQuery = searchBar.value.toLowerCase();
+                    const selectedGenre = genreSelect.value;
+                    const filteredChannels = channelsData.filter(channel => {
+                        const matchesGenre = selectedGenre === '' || channel.channel_genre === selectedGenre;
+                        const matchesSearch = channel.channel_name.toLowerCase().includes(searchQuery);
+                        return matchesGenre && matchesSearch;
+                    });
+
+                    filteredChannels.forEach(channel => {
+                        const channelCard = document.createElement('div');
+                        channelCard.classList.add('channel-card');
+
+                        const channelLink = document.createElement('a');
+                        channelLink.href = `#`;
+
+                        const channelLogo = document.createElement('img');
+                        channelLogo.src = channel.channel_logo;
+                        channelLogo.alt = `${channel.channel_name} Logo`;
+                        channelLogo.classList.add('channel-logo');
+
+                        const channelName = document.createElement('div');
+                        channelName.classList.add('channel-name');
+                        channelName.textContent = channel.channel_name;
+
+                        const channelGenre = document.createElement('div');
+                        channelGenre.classList.add('channel-genre');
+                        channelGenre.textContent = channel.channel_genre;
+
+                        const source1Button = document.createElement('button');
+                        source1Button.classList.add('source-button');
+                        source1Button.addEventListener('click', () => {
+                            showVideoPopup(`play.php?id=${channel.channel_id}`);
+                        });
+
+                        const source2Button = document.createElement('button');
+                        source2Button.classList.add('source-button');
+                        source2Button.addEventListener('click', () => {
+                            showVideoPopup(`https://tvtelugu.vercel.app/yt.html?channel=${channel.channel_id}`);
+                        });
+
+                        const sourceButtonsContainer = document.createElement('div');
+                        sourceButtonsContainer.classList.add('source-buttons');
+                        sourceButtonsContainer.appendChild(source1Button);
+                        sourceButtonsContainer.appendChild(source2Button);
+
+                        channelLink.appendChild(channelLogo);
+                        channelCard.appendChild(channelLink);
+                        channelCard.appendChild(channelName);
+                        channelCard.appendChild(channelGenre);
+                        channelCard.appendChild(sourceButtonsContainer);
+                        gridContainer.appendChild(channelCard);
+                    });
+
+                    hideLoader();
+                }
+
+                genreSelect.addEventListener('change', () => {
+                    renderChannels();
+                    saveState();
+                });
+
+                searchBar.addEventListener('input', () => {
+                    renderChannels();
+                    saveState();
+                });
+
+                loadState();
+                renderChannels();
+            });
     </script>
 </body>
 </html>
