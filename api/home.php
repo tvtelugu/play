@@ -6,7 +6,6 @@
     <title>🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™ || 𝐓𝐀𝐓𝐀𝐏𝐋𝐀𝐘 </title>
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico">
     <link href="https://fonts.googleapis.com/css2?family=Wittgenstein:wght@400;600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         body {
             font-family: 'Wittgenstein', serif;
@@ -273,264 +272,241 @@
             display: flex;
         }
 
-        .video-popup .video-container {
-            background: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            position: relative;
+        .video-popup .video-frame {
             width: 80%;
+            height: 80%;
             max-width: 800px;
-            padding: 10px;
+            max-height: 450px;
+            background-color: #000;
         }
 
-        .video-popup .video-container iframe {
-            width: 100%;
-            height: 450px;
-        }
-
-        .video-popup .close-btn {
+        .video-popup .close-popup {
             position: absolute;
-            top: 10px;
-            right: 10px;
+            top: 20px;
+            right: 20px;
             background: #e74c3c;
             color: #fff;
             border: none;
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 40px;
+            height: 40px;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             cursor: pointer;
         }
 
-        /* New Loading Animation */
-        .video-popup .loading-overlay {
+        .loading-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 10;
-        }
-
-        .video-popup .loading-overlay img {
-            width: 60px;
-            height: 60px;
-            margin-bottom: 10px;
-        }
-
-        .video-popup .loading-overlay .loader {
-            display: flex;
-            gap: 10px;
+            z-index: 1;
         }
     </style>
 </head>
 <body>
-    <div class="loader-container" id="loader-container">
-        <div class="loader">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-    </div>
     <h1>
-        <img src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVTELUGU-B.png" alt="Title Logo" class="title-logo">
-        🕊 𝐓𝐀𝐓𝐀𝐏𝐋𝐀𝐘
+        <img src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.png" class="title-logo">
+        🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™ || 𝐓𝐀𝐓𝐀𝐏𝐋𝐀𝐘 
     </h1>
     <div class="controls">
         <div class="select-container">
-            <i class="material-icons">category</i>
+            <span class="material-icons">category</span>
             <select id="genre-select">
                 <option value="">All Genres</option>
             </select>
         </div>
         <div class="search-container">
-            <i class="material-icons">search</i>
-            <input type="text" id="search-bar" placeholder="Search channels...">
+            <span class="material-icons">search</span>
+            <input type="text" id="search-bar" placeholder="Search...">
         </div>
     </div>
-    <div class="grid-container" id="grid-container">
-        <!-- Channel cards will be dynamically inserted here -->
+    <div id="grid-container" class="grid-container"></div>
+
+    <div id="loader-container" class="loader-container">
+        <div class="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+        <div style="color: #fff; margin-top: 10px;">Loading channels...</div>
     </div>
+
     <footer>
-        <p class="footer-text">© 2024 🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™. All rights reserved.</p>
+        <p class="footer-text">© 2024 TVTelugu. All rights reserved.</p>
     </footer>
 
     <!-- Video Popup -->
-    <div class="video-popup" id="video-popup">
-        <div class="video-container">
-            <button class="close-btn" id="close-popup">✖</button>
-            <div class="loading-overlay" id="loading-overlay">
-                <img src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico" alt="Site Logo">
-                <div class="loader">
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                    <div class="dot"></div>
-                </div>
+    <div id="video-popup" class="video-popup">
+        <div class="loading-overlay" id="loading-overlay">
+            <div class="loader">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
             </div>
-            <iframe id="video-frame" src="" frameborder="0" allowfullscreen></iframe>
         </div>
+        <iframe id="video-frame" class="video-frame" src="" frameborder="0" allowfullscreen></iframe>
+        <button id="close-popup" class="close-popup">&times;</button>
     </div>
 
-   <script>
-    const loaderContainer = document.getElementById('loader-container');
-    const videoPopup = document.getElementById('video-popup');
-    const videoFrame = document.getElementById('video-frame');
-    const closePopupButton = document.getElementById('close-popup');
-    const loadingOverlay = document.getElementById('loading-overlay');
-    const genreSelect = document.getElementById('genre-select');
-    const searchBar = document.getElementById('search-bar');
+    <script>
+        const loaderContainer = document.getElementById('loader-container');
+        const videoPopup = document.getElementById('video-popup');
+        const videoFrame = document.getElementById('video-frame');
+        const closePopupButton = document.getElementById('close-popup');
+        const loadingOverlay = document.getElementById('loading-overlay');
+        const genreSelect = document.getElementById('genre-select');
+        const searchBar = document.getElementById('search-bar');
 
-    function showLoader() {
-        loaderContainer.style.display = 'flex';
-    }
-
-    function hideLoader() {
-        loaderContainer.style.display = 'none';
-    }
-
-    function showVideoPopup(url) {
-        videoFrame.src = url;
-        loadingOverlay.style.display = 'flex'; // Show loading animation
-        videoPopup.classList.add('active');
-
-        // Hide loading animation after 5 seconds
-        setTimeout(() => {
-            loadingOverlay.style.display = 'none';
-        }, 5000);
-    }
-
-    function hideVideoPopup() {
-        videoPopup.classList.remove('active');
-        videoFrame.src = '';
-        loadingOverlay.style.display = 'none'; // Hide loading animation
-    }
-
-    closePopupButton.addEventListener('click', hideVideoPopup);
-
-    showLoader();
-
-    // Function to save the state to local storage
-    function saveState() {
-        localStorage.setItem('selectedGenre', genreSelect.value);
-        localStorage.setItem('searchQuery', searchBar.value);
-    }
-
-    // Function to load the state from local storage
-    function loadState() {
-        const savedGenre = localStorage.getItem('selectedGenre');
-        const savedQuery = localStorage.getItem('searchQuery');
-
-        if (savedGenre) {
-            genreSelect.value = savedGenre;
+        function showLoader() {
+            loaderContainer.style.display = 'flex';
         }
 
-        if (savedQuery) {
-            searchBar.value = savedQuery;
+        function hideLoader() {
+            loaderContainer.style.display = 'none';
         }
-    }
 
-    // Fetch channels and initialize
-    fetch('/channel.json')
-        .then(response => response.json())
-        .then(channelsData => {
-            const gridContainer = document.getElementById('grid-container');
+        function showVideoPopup(url) {
+            videoFrame.src = url;
+            loadingOverlay.style.display = 'flex'; // Show loading animation
+            videoPopup.classList.add('active');
 
-            const genres = [...new Set(channelsData.map(channel => channel.channel_genre))];
-            genres.forEach(genre => {
-                const option = document.createElement('option');
-                option.value = genre;
-                option.textContent = genre;
-                genreSelect.appendChild(option);
-            });
+            // Hide loading animation after 5 seconds
+            setTimeout(() => {
+                loadingOverlay.style.display = 'none';
+            }, 5000);
+        }
 
-            function renderChannels() {
-                gridContainer.innerHTML = '';
-                const searchQuery = searchBar.value.toLowerCase();
-                const selectedGenre = genreSelect.value;
-                const filteredChannels = channelsData.filter(channel => {
-                    const matchesGenre = selectedGenre === '' || channel.channel_genre === selectedGenre;
-                    const matchesSearch = channel.channel_name.toLowerCase().includes(searchQuery);
-                    return matchesGenre && matchesSearch;
-                });
+        function hideVideoPopup() {
+            videoPopup.classList.remove('active');
+            videoFrame.src = '';
+            loadingOverlay.style.display = 'none'; // Hide loading animation
+        }
 
-                filteredChannels.forEach(channel => {
-                    const channelCard = document.createElement('div');
-                    channelCard.classList.add('channel-card');
+        closePopupButton.addEventListener('click', hideVideoPopup);
 
-                    const channelLink = document.createElement('a');
-                    channelLink.href = `#`;
+        showLoader();
 
-                    const channelLogo = document.createElement('img');
-                    channelLogo.src = channel.channel_logo;
-                    channelLogo.alt = `${channel.channel_name} Logo`;
-                    channelLogo.classList.add('channel-logo');
+        // Function to save the state to local storage
+        function saveState() {
+            localStorage.setItem('selectedGenre', genreSelect.value);
+            localStorage.setItem('searchQuery', searchBar.value);
+        }
 
-                    const channelName = document.createElement('div');
-                    channelName.classList.add('channel-name');
-                    channelName.textContent = channel.channel_name;
+        // Function to load the state from local storage
+        function loadState() {
+            const savedGenre = localStorage.getItem('selectedGenre');
+            const savedQuery = localStorage.getItem('searchQuery');
 
-                    const channelGenre = document.createElement('div');
-                    channelGenre.classList.add('channel-genre');
-                    channelGenre.textContent = channel.channel_genre;
-
-                    const source1Button = document.createElement('button');
-                    source1Button.classList.add('source-button');
-                    source1Button.addEventListener('click', () => {
-                        showVideoPopup(`play.php?id=${channel.channel_id}`);
-                    });
-
-                    const source2Button = document.createElement('button');
-                    source2Button.classList.add('source-button');
-                    source2Button.addEventListener('click', () => {
-                        showVideoPopup(`https://tvtelugu.vercel.app/yt.html?channel=${channel.channel_id}`);
-                    });
-
-                    const sourceButtonsContainer = document.createElement('div');
-                    sourceButtonsContainer.classList.add('source-buttons');
-                    sourceButtonsContainer.appendChild(source1Button);
-                    sourceButtonsContainer.appendChild(source2Button);
-
-                    channelLink.appendChild(channelLogo);
-                    channelCard.appendChild(channelLink);
-                    channelCard.appendChild(channelName);
-                    channelCard.appendChild(channelGenre);
-                    channelCard.appendChild(sourceButtonsContainer);
-                    gridContainer.appendChild(channelCard);
-                });
-
-                hideLoader();
+            if (savedGenre) {
+                genreSelect.value = savedGenre;
             }
 
-            genreSelect.addEventListener('change', () => {
-                renderChannels();
-                saveState();
-            });
+            if (savedQuery) {
+                searchBar.value = savedQuery;
+            }
+        }
 
-            searchBar.addEventListener('input', () => {
-                renderChannels();
-                saveState();
-            });
+        // Fetch channels and initialize
+        fetch('channel.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(channelsData => {
+                const gridContainer = document.getElementById('grid-container');
 
-            loadState();
-            renderChannels();
-        })
-        .catch(error => {
-            console.error('Error loading channels:', error);
-            hideLoader(); // Ensure the loader is hidden even if there's an error
-        });
-</script>
+                const genres = [...new Set(channelsData.map(channel => channel.channel_genre))];
+                genres.forEach(genre => {
+                    const option = document.createElement('option');
+                    option.value = genre;
+                    option.textContent = genre;
+                    genreSelect.appendChild(option);
+                });
+
+                function renderChannels() {
+                    gridContainer.innerHTML = '';
+                    const searchQuery = searchBar.value.toLowerCase();
+                    const selectedGenre = genreSelect.value;
+                    const filteredChannels = channelsData.filter(channel => {
+                        const matchesGenre = selectedGenre === '' || channel.channel_genre === selectedGenre;
+                        const matchesSearch = channel.channel_name.toLowerCase().includes(searchQuery);
+                        return matchesGenre && matchesSearch;
+                    });
+
+                    filteredChannels.forEach(channel => {
+                        const channelCard = document.createElement('div');
+                        channelCard.classList.add('channel-card');
+
+                        const channelLink = document.createElement('a');
+                        channelLink.href = `#`;
+
+                        const channelLogo = document.createElement('img');
+                        channelLogo.src = channel.channel_logo;
+                        channelLogo.alt = `${channel.channel_name} Logo`;
+                        channelLogo.classList.add('channel-logo');
+
+                        const channelName = document.createElement('div');
+                        channelName.classList.add('channel-name');
+                        channelName.textContent = channel.channel_name;
+
+                        const channelGenre = document.createElement('div');
+                        channelGenre.classList.add('channel-genre');
+                        channelGenre.textContent = channel.channel_genre;
+
+                        const source1Button = document.createElement('button');
+                        source1Button.classList.add('source-button');
+                        source1Button.addEventListener('click', () => {
+                            showVideoPopup(`play.php?id=${channel.channel_id}`);
+                        });
+
+                        const source2Button = document.createElement('button');
+                        source2Button.classList.add('source-button');
+                        source2Button.addEventListener('click', () => {
+                            showVideoPopup(`https://tvtelugu.vercel.app/yt.html?channel=${channel.channel_id}`);
+                        });
+
+                        const sourceButtonsContainer = document.createElement('div');
+                        sourceButtonsContainer.classList.add('source-buttons');
+                        sourceButtonsContainer.appendChild(source1Button);
+                        sourceButtonsContainer.appendChild(source2Button);
+
+                        channelLink.appendChild(channelLogo);
+                        channelCard.appendChild(channelLink);
+                        channelCard.appendChild(channelName);
+                        channelCard.appendChild(channelGenre);
+                        channelCard.appendChild(sourceButtonsContainer);
+                        gridContainer.appendChild(channelCard);
+                    });
+
+                    hideLoader();
+                }
+
+                genreSelect.addEventListener('change', () => {
+                    renderChannels();
+                    saveState();
+                });
+
+                searchBar.addEventListener('input', () => {
+                    renderChannels();
+                    saveState();
+                });
+
+                loadState();
+                renderChannels();
+            })
+            .catch(error => {
+                console.error('Error loading channels:', error);
+                hideLoader(); // Ensure the loader is hidden even if there's an error
+            });
+    </script>
 </body>
 </html>
