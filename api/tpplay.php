@@ -93,15 +93,16 @@
                 primary: "html5"
             };
 
-            // Add DRM settings if needed
-            if (videoConfig.keyid && videoConfig.key) {
-                playerConfig.drm = {
-                    clearkey: {
-                        keyId: videoConfig.keyid,
-                        key: videoConfig.key
-                    }
-                };
-            }
+            // Temporarily remove DRM to test playback
+            // Remove DRM settings
+            // if (videoConfig.keyid && videoConfig.key) {
+            //     playerConfig.drm = {
+            //         clearkey: {
+            //             keyId: videoConfig.keyid,
+            //             key: videoConfig.key
+            //         }
+            //     };
+            // }
 
             jwplayer("player-container").setup(playerConfig);
         } else {
