@@ -25,8 +25,7 @@
 
         #player-container {
             width: 100%;
-            max-width: 800px;
-            border-radius: 10px;
+            border-radius: 2px;
             overflow: hidden;
             box-shadow: 0 0 20px rgba(0, 0, 0, .5)
         }
