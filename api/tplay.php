@@ -9,6 +9,7 @@
     <style>
         body {
             overflow: hidden; /* Prevent scrollbars */
+            background: #000;
         }
           #player-container {
             position: absolute;
@@ -72,7 +73,7 @@
                 controls: true,
                 logo: {
                     file: "https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico",
-                    position: "top-left",
+                    position: "bottom-left",
                     hide: false
                 }
             });
