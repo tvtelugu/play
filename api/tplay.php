@@ -7,16 +7,7 @@
     <title>🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™</title>
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background: #000;
-            height: 100%;
-            width: 100%;
-    
-        }
-
-        #player-container {
+          #player-container {
             position: absolute;
             top: 0;
             left: 0;
