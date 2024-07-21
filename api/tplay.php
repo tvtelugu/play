@@ -18,8 +18,6 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100vw; /* Full viewport width */
-            height: 100vh; /* Full viewport height */
             background: #000;
         }
 
@@ -77,7 +75,8 @@
                         key: videoConfig.key
                     }
                 },
-                stretching: "flex",
+                width: "100%",
+                height: "20%",
                 autostart: true,
                 mute: false,
                 primary: "html5",
