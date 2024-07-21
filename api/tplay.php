@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™</title>
-     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico">
+    <title>🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico">
     <style>
         body {
             margin: 0;
@@ -15,8 +15,19 @@
         }
 
         #player-container {
-            width: 20vh; /* Full viewport width */
-            height: 20vh; /* Full viewport height */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw; /* Full viewport width */
+            height: 100vh; /* Full viewport height */
+            background: #000;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 18px;
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -66,12 +77,18 @@
                         key: videoConfig.key
                     }
                 },
-               width: "100%",
+                width: "100%",
                 height: "100%",
                 stretching: "bestfit",
                 autostart: true,
                 mute: false,
-                primary: "html5"
+                primary: "html5",
+                controls: true,
+                logo: {
+                    file: "https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico",
+                    position: "top-left",
+                    hide: false
+                }
             });
         } else {
             console.error("Invalid data received from PHP script.");
