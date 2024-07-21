@@ -52,10 +52,10 @@ document.addEventListener('DOMContentLoaded', function() {
         populateChannels(filteredChannels);
     }
 
-    function playVideo(channelId) {
+    window.playVideo = function(channelId) {
         videoPlayer.src = `https://tvtelugu.vercel.app/api/tplay.php?id=${channelId}`;
         videoPopup.style.display = 'flex';
-    }
+    };
 
     searchBar.addEventListener('input', filterChannels);
     categoryDropdown.addEventListener('change', filterChannels);
