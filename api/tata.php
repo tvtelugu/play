@@ -1,3 +1,26 @@
+<?php
+// Load and decode the JSON data
+$jsonData = file_get_contents('channel.json');
+$channels = json_decode($jsonData, true);
+
+// Get unique genres for dropdown
+$genres = array_unique(array_column($channels, 'channel_genre'));
+
+// Filter channels based on selected genre
+$selectedGenre = isset($_GET['genre']) ? $_GET['genre'] : '';
+$filteredChannels = array_filter($channels, function($channel) use ($selectedGenre) {
+    return !$selectedGenre || $channel['channel_genre'] === $selectedGenre;
+});
+
+// Filter channels based on search query
+$searchQuery = isset($_GET['search']) ? strtolower($_GET['search']) : '';
+if ($searchQuery) {
+    $filteredChannels = array_filter($filteredChannels, function($channel) use ($searchQuery) {
+        return strpos(strtolower($channel['channel_name']), $searchQuery) !== false;
+    });
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,110 +28,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Channel Grid</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        .header {
-            position: relative;
-            background-image: url('header-background.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            opacity: 0.8;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 2em;
-        }
-        .search-bar {
-            margin-top: 20px;
-        }
-        .search-bar input[type="text"] {
-            padding: 10px;
-            width: 80%;
-            font-size: 1em;
-        }
-        .category-dropdown {
-            margin-top: 10px;
-        }
-        .category-dropdown select {
-            padding: 10px;
-            font-size: 1em;
-        }
-        .channel-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 10px;
-            padding: 20px;
-        }
-        .channel {
-            text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .channel img {
-            width: 100%;
-            height: auto;
-        }
-        .channel button {
-            padding: 10px;
-            background-color: #f00;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
+        .channel-grid { display: flex; flex-wrap: wrap; gap: 20px; }
+        .channel { border: 1px solid #ddd; padding: 10px; text-align: center; width: 200px; }
+        .channel img { max-width: 100%; height: auto; }
+        #video-player { display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -20%); z-index: 1000; background: #000; padding: 20px; border-radius: 10px; }
+        #video-player iframe { width: 100%; height: 300px; }
+        #overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: 999; }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>Channel Grid</h1>
-        <div class="search-bar">
-            <input type="text" id="search" placeholder="Search Channels...">
-        </div>
-        <div class="category-dropdown">
-            <select id="genre">
-                <option value="All">All Categories</option>
-                <option value="News">News</option>
-                <option value="Lifestyle">Lifestyle</option>
-            </select>
-        </div>
+    <h1>Channel Grid</h1>
+    <form method="GET">
+        <input type="text" name="search" placeholder="Search channels" value="<?php echo htmlspecialchars($searchQuery); ?>">
+        <select name="genre" onchange="this.form.submit()">
+            <option value="">All Genres</option>
+            <?php foreach ($genres as $genre): ?>
+                <option value="<?php echo htmlspecialchars($genre); ?>" <?php echo $selectedGenre === $genre ? 'selected' : ''; ?>>
+                    <?php echo htmlspecialchars($genre); ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+    </form>
+
+    <div class="channel-grid">
+        <?php foreach ($filteredChannels as $channel): ?>
+            <div class="channel" onclick="showVideo('<?php echo htmlspecialchars($channel['channel_id']); ?>')">
+                <img src="<?php echo htmlspecialchars($channel['channel_logo']); ?>" alt="<?php echo htmlspecialchars($channel['channel_name']); ?>">
+                <h3><?php echo htmlspecialchars($channel['channel_name']); ?></h3>
+            </div>
+        <?php endforeach; ?>
     </div>
-    <div class="channel-grid" id="channel-grid">
-        <!-- Channel items will be dynamically added here -->
+
+    <!-- Overlay and Video Player -->
+    <div id="overlay"></div>
+    <div id="video-player">
+        <iframe id="video-frame" src="" frameborder="0" allowfullscreen></iframe>
+        <button onclick="closeVideo()">Close</button>
     </div>
+
     <script>
-        async function fetchChannels() {
-            const response = await fetch('channel.json');
-            const data = await response.json();
-            const channelGrid = document.getElementById('channel-grid');
-            
-            data.data.forEach(channel => {
-                const channelDiv = document.createElement('div');
-                channelDiv.classList.add('channel');
-                
-                channelDiv.innerHTML = `
-                    <img src="${channel.logo}" alt="${channel.name}">
-                    <h3>${channel.name}</h3>
-                    <button onclick="playVideo('${channel.id}')">Watch</button>
-                `;
-                
-                channelGrid.appendChild(channelDiv);
-            });
+        function showVideo(channelId) {
+            var iframe = document.getElementById('video-frame');
+            iframe.src = 'https://tvtelugu.vercel.app/api/tplay.php?id=' + channelId;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('video-player').style.display = 'block';
         }
 
-        function playVideo(id) {
-            const url = `https://tvtelugu.vercel.app/api/tplay.php?id=${id}`;
-            window.open(url, '_blank');
+        function closeVideo() {
+            var iframe = document.getElementById('video-frame');
+            iframe.src = '';
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('video-player').style.display = 'none';
         }
-
-        fetchChannels();
     </script>
 </body>
 </html>
