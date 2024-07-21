@@ -1,7 +1,22 @@
 <?php
-// Load and decode the JSON data
-$jsonData = file_get_contents('channel.json');
+// Define the path to the JSON file
+$filePath = 'channel.json';
+
+// Attempt to read the JSON file
+$jsonData = @file_get_contents($filePath);
+
+// Check if file_get_contents was successful
+if ($jsonData === false) {
+    die('Error: Unable to read JSON file.');
+}
+
+// Decode the JSON data
 $channels = json_decode($jsonData, true);
+
+// Check if json_decode was successful
+if ($channels === null) {
+    die('Error: Unable to decode JSON data.');
+}
 
 // Get unique genres for dropdown
 $genres = array_unique(array_column($channels, 'channel_genre'));
