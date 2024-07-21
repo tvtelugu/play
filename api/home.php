@@ -443,7 +443,7 @@
     }
 
     // Fetch channels and initialize
-    fetch('channel.json')
+    fetch('/channel.json')
         .then(response => response.json())
         .then(channelsData => {
             const gridContainer = document.getElementById('grid-container');
