@@ -257,6 +257,21 @@
             font-weight: bold;
             cursor: pointer;
         }
+
+        .video-controls {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-button {
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -299,6 +314,10 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <iframe id="video-iframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="video-controls">
+                <span class="control-button material-icons" id="play-button">play_arrow</span>
+                <span class="control-button material-icons" id="pause-button">pause</span>
+            </div>
         </div>
     </div>
 
