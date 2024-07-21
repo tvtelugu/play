@@ -119,12 +119,6 @@
             border-radius: 5px;
             overflow: hidden;
             text-align: center;
-            cursor: pointer;
-            transition: transform 0.2s ease-in-out;
-        }
-
-        .channel-card:hover {
-            transform: scale(1.05);
         }
 
         .channel-logo {
@@ -223,7 +217,7 @@
             font-size: 14px;
         }
 
-        /* Modal Styles */
+        /* Modal styles */
         .modal {
             display: none;
             position: fixed;
@@ -233,31 +227,30 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7);
-            align-items: center;
-            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.8);
         }
 
         .modal-content {
-            position: relative;
-            background-color: #fff;
+            background-color: #fefefe;
+            margin: 15% auto;
             padding: 20px;
-            border-radius: 5px;
+            border: 1px solid #888;
             width: 80%;
             max-width: 800px;
-        }
-
-        .modal-content video {
-            width: 100%;
-            height: auto;
+            height: 80%;
         }
 
         .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
+            color: #aaa;
+            float: right;
+            font-size: 28px;
             font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
             cursor: pointer;
         }
     </style>
@@ -297,23 +290,19 @@
         <p class="footer-text">© 2024 🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™. All rights reserved.</p>
     </footer>
 
-    <!-- Modal HTML -->
+    <!-- Modal Container -->
     <div id="video-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <video id="video-player" controls>
-                <source id="video-source" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
+            <iframe id="video-iframe" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
         </div>
     </div>
 
     <script>
         const loaderContainer = document.getElementById('loader-container');
-        const videoModal = document.getElementById('video-modal');
-        const videoPlayer = document.getElementById('video-player');
-        const videoSource = document.getElementById('video-source');
-        const closeModal = document.querySelector('.close');
+        const modal = document.getElementById('video-modal');
+        const iframe = document.getElementById('video-iframe');
+        const closeModal = document.querySelector('.modal .close');
 
         function showLoader() {
             loaderContainer.style.display = 'flex';
@@ -324,20 +313,20 @@
         }
 
         function openModal(videoUrl) {
-            videoSource.src = videoUrl;
-            videoPlayer.load();
-            videoModal.style.display = 'flex';
+            iframe.src = videoUrl;
+            modal.style.display = 'block';
         }
 
-        function closeModalFunction() {
-            videoModal.style.display = 'none';
-            videoPlayer.pause();
+        function closeModalFn() {
+            modal.style.display = 'none';
+            iframe.src = ''; // Stop video playback when closing
         }
 
-        closeModal.addEventListener('click', closeModalFunction);
+        closeModal.addEventListener('click', closeModalFn);
+
         window.addEventListener('click', function(event) {
-            if (event.target === videoModal) {
-                closeModalFunction();
+            if (event.target === modal) {
+                closeModalFn();
             }
         });
 
@@ -372,6 +361,10 @@
                         const channelCard = document.createElement('div');
                         channelCard.classList.add('channel-card');
 
+                        const channelLink = document.createElement('div'); // Changed to div
+                        channelLink.classList.add('channel-link');
+                        channelLink.dataset.videoUrl = `/api/tplay.php?id=${channel.channel_id}`; // Store URL in data attribute
+
                         const channelLogo = document.createElement('img');
                         channelLogo.src = channel.channel_logo;
                         channelLogo.alt = `${channel.channel_name} Logo`;
@@ -385,13 +378,15 @@
                         channelGenre.classList.add('channel-genre');
                         channelGenre.textContent = channel.channel_genre;
 
-                        channelCard.appendChild(channelLogo);
+                        channelLink.appendChild(channelLogo);
+                        channelCard.appendChild(channelLink);
                         channelCard.appendChild(channelName);
                         channelCard.appendChild(channelGenre);
                         gridContainer.appendChild(channelCard);
 
-                        channelCard.addEventListener('click', () => {
-                            openModal(`/api/tplay.php?id=${channel.channel_id}`);
+                        // Add click event to channelLink div
+                        channelLink.addEventListener('click', function() {
+                            openModal(this.dataset.videoUrl);
                         });
                     });
 
