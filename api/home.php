@@ -384,149 +384,153 @@
         </div>
     </div>
 
-    <script>
-        const loaderContainer = document.getElementById('loader-container');
-        const videoPopup = document.getElementById('video-popup');
-        const videoFrame = document.getElementById('video-frame');
-        const closePopupButton = document.getElementById('close-popup');
-        const loadingOverlay = document.getElementById('loading-overlay');
-        const genreSelect = document.getElementById('genre-select');
-        const searchBar = document.getElementById('search-bar');
+   <script>
+    const loaderContainer = document.getElementById('loader-container');
+    const videoPopup = document.getElementById('video-popup');
+    const videoFrame = document.getElementById('video-frame');
+    const closePopupButton = document.getElementById('close-popup');
+    const loadingOverlay = document.getElementById('loading-overlay');
+    const genreSelect = document.getElementById('genre-select');
+    const searchBar = document.getElementById('search-bar');
 
-        function showLoader() {
-            loaderContainer.style.display = 'flex';
+    function showLoader() {
+        loaderContainer.style.display = 'flex';
+    }
+
+    function hideLoader() {
+        loaderContainer.style.display = 'none';
+    }
+
+    function showVideoPopup(url) {
+        videoFrame.src = url;
+        loadingOverlay.style.display = 'flex'; // Show loading animation
+        videoPopup.classList.add('active');
+
+        // Hide loading animation after 5 seconds
+        setTimeout(() => {
+            loadingOverlay.style.display = 'none';
+        }, 5000);
+    }
+
+    function hideVideoPopup() {
+        videoPopup.classList.remove('active');
+        videoFrame.src = '';
+        loadingOverlay.style.display = 'none'; // Hide loading animation
+    }
+
+    closePopupButton.addEventListener('click', hideVideoPopup);
+
+    showLoader();
+
+    // Function to save the state to local storage
+    function saveState() {
+        localStorage.setItem('selectedGenre', genreSelect.value);
+        localStorage.setItem('searchQuery', searchBar.value);
+    }
+
+    // Function to load the state from local storage
+    function loadState() {
+        const savedGenre = localStorage.getItem('selectedGenre');
+        const savedQuery = localStorage.getItem('searchQuery');
+
+        if (savedGenre) {
+            genreSelect.value = savedGenre;
         }
 
-        function hideLoader() {
-            loaderContainer.style.display = 'none';
+        if (savedQuery) {
+            searchBar.value = savedQuery;
         }
+    }
 
-        function showVideoPopup(url) {
-            videoFrame.src = url;
-            loadingOverlay.style.display = 'flex'; // Show loading animation
-            videoPopup.classList.add('active');
+    // Fetch channels and initialize
+    fetch('channel.json')
+        .then(response => response.json())
+        .then(channelsData => {
+            const gridContainer = document.getElementById('grid-container');
 
-            // Hide loading animation after 5 seconds
-            setTimeout(() => {
-                loadingOverlay.style.display = 'none';
-            }, 5000);
-        }
-
-        function hideVideoPopup() {
-            videoPopup.classList.remove('active');
-            videoFrame.src = '';
-            loadingOverlay.style.display = 'none'; // Hide loading animation
-        }
-
-        closePopupButton.addEventListener('click', hideVideoPopup);
-
-        showLoader();
-
-        // Function to save the state to local storage
-        function saveState() {
-            localStorage.setItem('selectedGenre', genreSelect.value);
-            localStorage.setItem('searchQuery', searchBar.value);
-        }
-
-        // Function to load the state from local storage
-        function loadState() {
-            const savedGenre = localStorage.getItem('selectedGenre');
-            const savedQuery = localStorage.getItem('searchQuery');
-
-            if (savedGenre) {
-                genreSelect.value = savedGenre;
-            }
-
-            if (savedQuery) {
-                searchBar.value = savedQuery;
-            }
-        }
-
-        // Fetch channels and initialize
-        fetch('channel.json')
-            .then(response => response.json())
-            .then(channelsData => {
-                const gridContainer = document.getElementById('grid-container');
-
-                const genres = [...new Set(channelsData.map(channel => channel.channel_genre))];
-                genres.forEach(genre => {
-                    const option = document.createElement('option');
-                    option.value = genre;
-                    option.textContent = genre;
-                    genreSelect.appendChild(option);
-                });
-
-                function renderChannels() {
-                    gridContainer.innerHTML = '';
-                    const searchQuery = searchBar.value.toLowerCase();
-                    const selectedGenre = genreSelect.value;
-                    const filteredChannels = channelsData.filter(channel => {
-                        const matchesGenre = selectedGenre === '' || channel.channel_genre === selectedGenre;
-                        const matchesSearch = channel.channel_name.toLowerCase().includes(searchQuery);
-                        return matchesGenre && matchesSearch;
-                    });
-
-                    filteredChannels.forEach(channel => {
-                        const channelCard = document.createElement('div');
-                        channelCard.classList.add('channel-card');
-
-                        const channelLink = document.createElement('a');
-                        channelLink.href = `#`;
-
-                        const channelLogo = document.createElement('img');
-                        channelLogo.src = channel.channel_logo;
-                        channelLogo.alt = `${channel.channel_name} Logo`;
-                        channelLogo.classList.add('channel-logo');
-
-                        const channelName = document.createElement('div');
-                        channelName.classList.add('channel-name');
-                        channelName.textContent = channel.channel_name;
-
-                        const channelGenre = document.createElement('div');
-                        channelGenre.classList.add('channel-genre');
-                        channelGenre.textContent = channel.channel_genre;
-
-                        const source1Button = document.createElement('button');
-                        source1Button.classList.add('source-button');
-                        source1Button.addEventListener('click', () => {
-                            showVideoPopup(`play.php?id=${channel.channel_id}`);
-                        });
-
-                        const source2Button = document.createElement('button');
-                        source2Button.classList.add('source-button');
-                        source2Button.addEventListener('click', () => {
-                            showVideoPopup(`https://tvtelugu.vercel.app/yt.html?channel=${channel.channel_id}`);
-                        });
-
-                        const sourceButtonsContainer = document.createElement('div');
-                        sourceButtonsContainer.classList.add('source-buttons');
-                        sourceButtonsContainer.appendChild(source1Button);
-                        sourceButtonsContainer.appendChild(source2Button);
-
-                        channelLink.appendChild(channelLogo);
-                        channelCard.appendChild(channelLink);
-                        channelCard.appendChild(channelName);
-                        channelCard.appendChild(channelGenre);
-                        channelCard.appendChild(sourceButtonsContainer);
-                        gridContainer.appendChild(channelCard);
-                    });
-
-                    hideLoader();
-                }
-
-                genreSelect.addEventListener('change', () => {
-                    renderChannels();
-                    saveState();
-                });
-
-                searchBar.addEventListener('input', () => {
-                    renderChannels();
-                    saveState();
-                });
-
-                loadState();
-                renderChannels();
+            const genres = [...new Set(channelsData.map(channel => channel.channel_genre))];
+            genres.forEach(genre => {
+                const option = document.createElement('option');
+                option.value = genre;
+                option.textContent = genre;
+                genreSelect.appendChild(option);
             });
-    </script>
+
+            function renderChannels() {
+                gridContainer.innerHTML = '';
+                const searchQuery = searchBar.value.toLowerCase();
+                const selectedGenre = genreSelect.value;
+                const filteredChannels = channelsData.filter(channel => {
+                    const matchesGenre = selectedGenre === '' || channel.channel_genre === selectedGenre;
+                    const matchesSearch = channel.channel_name.toLowerCase().includes(searchQuery);
+                    return matchesGenre && matchesSearch;
+                });
+
+                filteredChannels.forEach(channel => {
+                    const channelCard = document.createElement('div');
+                    channelCard.classList.add('channel-card');
+
+                    const channelLink = document.createElement('a');
+                    channelLink.href = `#`;
+
+                    const channelLogo = document.createElement('img');
+                    channelLogo.src = channel.channel_logo;
+                    channelLogo.alt = `${channel.channel_name} Logo`;
+                    channelLogo.classList.add('channel-logo');
+
+                    const channelName = document.createElement('div');
+                    channelName.classList.add('channel-name');
+                    channelName.textContent = channel.channel_name;
+
+                    const channelGenre = document.createElement('div');
+                    channelGenre.classList.add('channel-genre');
+                    channelGenre.textContent = channel.channel_genre;
+
+                    const source1Button = document.createElement('button');
+                    source1Button.classList.add('source-button');
+                    source1Button.addEventListener('click', () => {
+                        showVideoPopup(`play.php?id=${channel.channel_id}`);
+                    });
+
+                    const source2Button = document.createElement('button');
+                    source2Button.classList.add('source-button');
+                    source2Button.addEventListener('click', () => {
+                        showVideoPopup(`https://tvtelugu.vercel.app/yt.html?channel=${channel.channel_id}`);
+                    });
+
+                    const sourceButtonsContainer = document.createElement('div');
+                    sourceButtonsContainer.classList.add('source-buttons');
+                    sourceButtonsContainer.appendChild(source1Button);
+                    sourceButtonsContainer.appendChild(source2Button);
+
+                    channelLink.appendChild(channelLogo);
+                    channelCard.appendChild(channelLink);
+                    channelCard.appendChild(channelName);
+                    channelCard.appendChild(channelGenre);
+                    channelCard.appendChild(sourceButtonsContainer);
+                    gridContainer.appendChild(channelCard);
+                });
+
+                hideLoader();
+            }
+
+            genreSelect.addEventListener('change', () => {
+                renderChannels();
+                saveState();
+            });
+
+            searchBar.addEventListener('input', () => {
+                renderChannels();
+                saveState();
+            });
+
+            loadState();
+            renderChannels();
+        })
+        .catch(error => {
+            console.error('Error loading channels:', error);
+            hideLoader(); // Ensure the loader is hidden even if there's an error
+        });
+</script>
 </body>
 </html>
