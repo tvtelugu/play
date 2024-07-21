@@ -15,8 +15,8 @@
         }
 
         #player-container {
-            width: 200vh; /* Full viewport width */
-            height: 200vh; /* Full viewport height */
+            width: 20vh; /* Full viewport width */
+            height: 20vh; /* Full viewport height */
         }
     </style>
 </head>
