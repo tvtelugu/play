@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™ || 𝐓𝐀𝐓𝐀𝐏𝐋𝐀𝐘 </title>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            background-image: url('https://images.pexels.com/photos/4840134/pexels-photo-4840134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            overflow: hidden; /* Prevent body overflow */
+            height: 100vh; /* Ensure body takes full viewport height */
+            position: relative; /* Required for positioning the blur effect */
+        }
+
+        .background-blur {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text visibility */
+            backdrop-filter: blur(8px); /* Blur effect */
+            z-index: -1;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0); /* Fully transparent background */
+            color: white;
+            padding: 0px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            position: fixed; /* Fixed positioning */
+            top: 0;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center items horizontally */
+            box-sizing: border-box; /* Ensure padding is included in width */
+        }
+
+        .header img {
+            width: 100px; /* Adjust size as needed */
+            height: auto; /* Maintain aspect ratio */
+            margin-bottom: 30px; /* Adjust spacing below the logo */
+        }
+
+        .header .text-box {
+            margin: 10px 0;
+            padding: 5px;
+            border-radius: 15px;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text visibility */
+            backdrop-filter: blur(8px); /* Blur effect */
+            width: 100%; /* Adjust width as needed */
+            max-width: 720px; /* Adjust max-width as needed */
+            box-sizing: border-box;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 220px 20px 20px; /* Adjust margin to ensure it's below the header */
+            gap: 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .search-container input,
+        .search-container select {
+            padding: 14px 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            flex: 1; /* Allow input and select to take available space */
+            background: #ffffff;
+            color: #333;
+        }
+
+        .search-container input {
+            padding-right: 40px; /* Space for the search icon inside input */
+            position: relative;
+        }
+
+        .search-container input:focus,
+        .search-container select:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 8px rgba(0, 86, 179, 0.2);
+        }
+
+        .search-container select {
+            -webkit-appearance: none; /* Remove default styling */
+            -moz-appearance: none; /* Remove default styling */
+            appearance: none; /* Remove default styling */
+            background: #f7f7f7 url('https://example.com/your-arrow-icon.png') no-repeat right center; /* Add custom arrow icon */
+            background-size: 24px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align items to the top for proper scrolling */
+            padding: 20px;
+            overflow-y: auto; /* Enable scrolling within this container */
+            height: calc(100vh - 80px); /* Adjust height to fit within viewport minus header height */
+            margin-top: 120px; /* Adjust margin-top to ensure it's below the header */
+            box-sizing: border-box;
+        }
+
+        .channel-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        .channel-card {
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            transform: translateY(0);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center; /* Center text within the card */
+        }
+
+        .channel-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .channel-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            transition: opacity 0.3s;
+        }
+
+        .channel-card img:hover {
+            opacity: 0.8;
+        }
+
+        .channel-card h3 {
+            margin: 10px;
+            font-size: 18px;
+            color: #333;
+            font-family: 'Roboto', sans-serif; /* Change to a more stylish font */
+            font-weight: 500; /* Medium weight for better readability */
+            transition: color 0.3s;
+            line-height: 1.4; /* Improve line spacing */
+        }
+
+        .channel-card:hover h3 {
+            color: #0056b3;
+        }
+		        footer {
+            margin-top: 40px;
+            padding: 10px;
+            background-color: #2c3e50;
+            color: #ffffff;
+            text-align: center;
+            border-radius: 5px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .footer-text {
+            margin: 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-blur"></div>
+
+    <div class="header">
+        <img src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVTELUGU-B.png" alt="Logo">
+        <div class="text-box">
+            <!-- Your text content here -->
+              ⚠️ 𝐍𝐨𝐭𝐞 : 𝐉𝐮𝐬𝐭 𝐢𝐧𝐬𝐭𝐚𝐥 𝐁𝐞𝐥𝐨𝐰 𝐩𝐥𝐚𝐲𝐞𝐫 𝐄𝐱𝐭𝐞𝐧𝐭𝐢𝐨𝐧 𝐭𝐨 𝐲𝐨𝐮𝐫 𝐂𝐡𝐫𝐨𝐦𝐞 𝐁𝐫𝐨𝐰𝐬𝐞𝐫 𝐅𝐨𝐫 𝐩𝐥𝐚𝐲𝐢𝐧𝐠 𝐂𝐡𝐚𝐧𝐧𝐞𝐥𝐬 💡
+       <p> <a href="https://chromewebstore.google.com/detail/videoplayer-mpdm3u8m3uepg/opmeopcambhfimffbomjgemehjkbbmji?hl=en">🟢𝐂𝐥𝐢𝐜𝐤 𝐇𝐞𝐫𝐞 ▶️</a></p>
+        </div>
+    </div>
+
+    <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Search channels...">
+        <select id="genre-filter">
+            <option value="">All Genres</option>
+            <!-- Genres will be populated by JavaScript -->
+        </select>
+    </div>
+
+    <div class="container">
+        <div id="channel-grid" class="channel-grid">
+            <!-- Channels will be injected here by JavaScript -->
+        </div>
+		 <footer>
+        <p class="footer-text">© 2024 🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™. All rights reserved.</p>
+    </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const channelDataUrl = 'channels.json'; // Path to your JSON file
+            const channelGrid = document.getElementById('channel-grid');
+            const searchBar = document.getElementById('search-bar');
+            const genreFilter = document.getElementById('genre-filter');
+
+            let channels = []; // Store fetched channels
+
+            fetch(channelDataUrl)
+                .then(response => response.json())
+                .then(data => {
+                    channels = data;
+                    populateGenres(data);
+                    displayChannels(data);
+                });
+
+            function populateGenres(data) {
+                const genres = new Set(data.map(channel => channel.channel_genre));
+                genres.forEach(genre => {
+                    const option = document.createElement('option');
+                    option.value = genre;
+                    option.textContent = genre;
+                    genreFilter.appendChild(option);
+                });
+            }
+
+            function displayChannels(data) {
+                channelGrid.innerHTML = ''; // Clear existing content
+                data.forEach(channel => {
+                    const card = document.createElement('div');
+                    card.classList.add('channel-card');
+                    card.innerHTML = `
+                        <img src="${channel.channel_logo}" alt="${channel.channel_name}">
+                        <h3>${channel.channel_name}</h3>
+                    `;
+                    card.addEventListener('click', () => {
+                        window.open(channel.channel_id, '_blank'); // Open channel URL in a new tab
+                    });
+                    channelGrid.appendChild(card);
+                });
+            }
+
+            searchBar.addEventListener('input', () => {
+                const searchTerm = searchBar.value.toLowerCase();
+                const filteredChannels = channels.filter(channel =>
+                    channel.channel_name.toLowerCase().includes(searchTerm)
+                );
+                displayChannels(filteredChannels);
+            });
+
+            genreFilter.addEventListener('change', () => {
+                const selectedGenre = genreFilter.value;
+                const filteredChannels = selectedGenre 
+                    ? channels.filter(channel => channel.channel_genre === selectedGenre)
+                    : channels;
+                displayChannels(filteredChannels);
+            });
+        });
+    </script>
+</body>
+</html>
