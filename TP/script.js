@@ -2,9 +2,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const channelGrid = document.getElementById('channel-grid');
     const categoryDropdown = document.getElementById('category-dropdown');
     const searchBar = document.getElementById('search-bar');
-    const videoPopup = document.getElementById('video-popup');
+    const videoPlayerContainer = document.getElementById('video-player-container');
     const videoPlayer = document.getElementById('video-player');
-    const closePopup = document.getElementById('close-popup');
 
     let channels = [];
 
@@ -26,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
             card.innerHTML = `
                 <img src="${channel.channel_logo}" alt="${channel.channel_name}">
                 <h2>${channel.channel_name}</h2>
-                <button onclick="playVideo(${channel.channel_id})">Watch</button>
+                <button onclick="playVideo('${channel.channel_id}')">Watch</button>
             `;
             channelGrid.appendChild(card);
         });
@@ -54,14 +53,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     window.playVideo = function(channelId) {
         videoPlayer.src = `https://tvtelugu.vercel.app/api/tplay.php?id=${channelId}`;
-        videoPopup.style.display = 'flex';
+        videoPlayerContainer.style.display = 'block'; // Show the video player
     };
 
     searchBar.addEventListener('input', filterChannels);
     categoryDropdown.addEventListener('change', filterChannels);
-    closePopup.addEventListener('click', () => {
-        videoPopup.style.display = 'none';
-        videoPlayer.pause(); // Pause the video when the popup is closed
-        videoPlayer.src = ''; // Clear the video source to stop playback
-    });
 });
