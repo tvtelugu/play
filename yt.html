@@ -2,1327 +2,498 @@
 <html lang="en">
 
 <head>
-    <meta data-sm="0-0-0-0-0-0-0-0-0-0-1-0" charset="utf-8" />
-    <meta data-sm="0-0-0-0-0-0-0-0-0-0-2-0" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <link data-sm="0-0-0-0-0-0-0-0-0-0-3-0" rel="manifest" href="manifest.webmanifest" />
-    <link data-sm="0-0-0-0-0-0-0-0-0-0-4-0" rel="icon" href="favicon.png" />
-    <title data-sm="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-2-0">Trending | Conduit</title>
-    <link rel="modulepreload" href="trending-374ec1b1.js">
-    <link rel="modulepreload" href="entry-client-0a6ac3a6.js">
-    <link rel="stylesheet" href="entry-client-5879de01.css">
-    <link rel="modulepreload" href="Error-408ec9a7.js">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All In One TataPlay Live</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #F8F8F8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header */
+        .header {
+            background-color: #FFF;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 5px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: fadeInDown 0.5s ease-in-out;
+            overflow: hidden;
+        }
+
+        .header .logo {
+            font-size: 20px;
+            font-weight: 900;
+            padding: 8px;
+            color: #333;
+            text-decoration: none;
+            white-space: nowrap;
+            animation: slideInLeft 0.5s ease-in-out;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        /* Player Container */
+        .player-container {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #FFF;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            animation: fadeIn 0.5s ease-in-out;
+            position: relative;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            padding: 5px;
+            text-align: center;
+            font-size: 14px;
+            color: #FFF;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            animation: fadeInUp 0.5s ease-in-out;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+    </style>
+    <style type='text/css'>
+        /* Animation */
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px)
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @keyframes rubberBand {
+            from {
+                transform: scale3d(1, 1, 1)
+            }
+
+            30% {
+                transform: scale3d(1.25, 0.75, 1)
+            }
+
+            40% {
+                transform: scale3d(0.75, 1.25, 1)
+            }
+
+            50% {
+                transform: scale3d(1.15, 0.85, 1)
+            }
+
+            65% {
+                transform: scale3d(.95, 1.05, 1)
+            }
+
+            75% {
+                transform: scale3d(1.05, .95, 1)
+            }
+
+            to {
+                transform: scale3d(1, 1, 1)
+            }
+        }
+
+        #arlinablock {
+            background: rgba(0, 0, 0, 0.65);
+            position: fixed;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            overflow: auto;
+            z-index: 999999;
+            animation: fadeInDown 1s
+        }
+
+        #arlinablock .header {
+            margin: 0 0 15px
+        }
+
+        #arlinablock .inner {
+            background: #E74C3C;
+            color: #fff;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 600px;
+            padding: 40px;
+            border-radius: 5px;
+            margin: 7% auto 2%;
+            animation: rubberBand 1s
+        }
+
+        #arlinablock button {
+            padding: 10px 20px;
+            border: 0;
+            background: rgba(0, 0, 0, 0.15);
+            color: #fff;
+            margin: 20px 5px;
+            cursor: pointer;
+            transition: all .3s
+        }
+
+        #arlinablock button:hover {
+            background: rgba(0, 0, 0, 0.35);
+            color: #fff;
+            outline: none
+        }
+
+        #arlinablock button.active,
+        #arlinablock button:hover.active {
+            background: #fff;
+            color: #222;
+            outline: none
+        }
+
+        #arlinablock .fixblock {
+            background: #fff;
+            text-align: left;
+            color: #000;
+            padding: 20px;
+            height: 250px;
+            overflow: auto;
+            line-height: 30px
+        }
+
+        #arlinablock .fixblock div {
+            display: none
+        }
+
+        #arlinablock .fixblock div.active {
+            display: block
+        }
+
+        #arlinablock ol {
+            margin-left: 20px
+        }
+
+        @media(max-width:768px) {
+            #arlinablock .inner {
+                width: calc(100% - 20px);
+                margin: 10px auto;
+                padding: 15px
+            }
+        }
+
+        .inner h2 {
+            color: whitesmoke;
+            text-shadow: black;
+        }
+
+        /* Say Hi to Adblock */
+        #arlinablock {
+            background: rgba(0, 0, 0, 0.65);
+            position: fixed;
+            margin: auto;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            overflow: auto;
+            z-index: 999999;
+            animation: fadeInDown 1s
+        }
+
+        #arlinablock .header {
+            margin: 0 0 15px
+        }
+
+        #arlinablock .inner {
+            background: #E74C3C;
+            color: #fff;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 600px;
+            padding: 40px;
+            border-radius: 5px;
+            margin: 7% auto 2%;
+            animation: rubberBand 1s
+        }
+
+        #arlinablock button {
+            padding: 10px 20px;
+            border: 0;
+            background: rgba(0, 0, 0, 0.15);
+            color: #fff;
+            margin: 20px 5px;
+            cursor: pointer;
+            transition: all .3s
+        }
+
+        #arlinablock button:hover {
+            background: rgba(0, 0, 0, 0.35);
+            color: #fff;
+            outline: none
+        }
+
+        #arlinablock button.active,
+        #arlinablock button:hover.active {
+            background: #fff;
+            color: #222;
+            outline: none
+        }
+
+        #arlinablock .fixblock {
+            background: #fff;
+            text-align: left;
+            color: #000;
+            padding: 20px;
+            height: 250px;
+            overflow: auto;
+            line-height: 30px
+        }
+
+        #arlinablock .fixblock div {
+            display: none
+        }
+
+        #arlinablock .fixblock div.active {
+            display: block
+        }
+
+        #arlinablock ol {
+            margin-left: 20px
+        }
+
+        @media(max-width:768px) {
+            #arlinablock .inner {
+                width: calc(100% - 20px);
+                margin: 10px auto;
+                padding: 15px
+            }
+        }
+    </style>
 </head>
 
-<body class="github bg-bg1 font-manrope text-sm scrollbar text-text1 selection:bg-accent2 selection:text-text3 overflow-x-hidden ">
-    <!--!$e0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-->
-    <nav data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-1" class="fixed top-0 left-0 bg-bg2 w-full z-[99999] h-10 px-2 flex items-center justify-between"><button class="sr-only focus:not-sr-only absolute top-0 left-0">Skip navigation</button>
-        <div class="flex items-center justify-between w-full max-w-full min-w-0">
-            <!--#--><a data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-2-0" link="true" href="/" class="text-text1 mx-2 w-8 h-8 active" aria-current="page"><img data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-2-1" src="/logo.svg" alt="Conduit" class="h-8 w-8 aspect-square min-w-max "></a>
-            <!--/-->
-            <ul class="hidden md:inline"><a data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0" link="true" href="/feed" class="link text-sm p-1 text-left transition  inactive">Feed</a><a data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-1-0" link="true" href="/trending" class="link text-sm p-1 text-left transition  active" aria-current="page">Trending</a><a data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-2-0" link="true" href="/library" class="link text-sm p-1 text-left transition  inactive">Library</a><a data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-3-0" link="true" href="/import" class="link text-sm p-1 text-left transition  inactive">Import</a></ul>
-            <!--#-->
-            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-4-1" class="relative z-[999999] flex items-center transition-all duration-500  ">
-                <!--#-->
-                <!--/--><label for="search-input" class="sr-only">Search</label><input aria-haspopup="listbox" aria-owns="suggestion-list" aria-expanded="false" aria-controls="suggestion-list" id="search-input" class="w-full max-w-full outline-none bg-bg1 border border-bg2 focus:ring-2 text-text1 text-sm rounded-lg focus:ring-primary focus:border-primary mx-1 py-1 px-2.5" type="combobox" value="" placeholder="Search... (Ctrl + K)" aria-autocomplete="list">
-                <!--#-->
-                <!--/-->
-                <!--#-->
-                <!--/-->
-                <!--#-->
-                <!--/-->
-            </div>
-            <!--/-->
-            <div class="flex items-center gap-2 ">
-                <!--#--><button data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-5-1-0-0-0-0-0-0-0" type="button" aria-haspopup="dialog" aria-expanded="false" data-closed="" class="p-1 outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md "><svg color="currentColor" fill="currentColor" stroke-width="0" style="overflow:visible" baseProfile="tiny" version="1.2" viewBox="0 0 24 24" class="w-9 h-9 text-red-500 " height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17.414 6.586a2 2 0 0 0-2.828 0L12 9.172 9.414 6.586a2 2 0 1 0-2.828 2.828L9.171 12l-2.585 2.586a2 2 0 1 0 2.828 2.828L12 14.828l2.586 2.586c.39.391.902.586 1.414.586s1.024-.195 1.414-.586a2 2 0 0 0 0-2.828L14.829 12l2.585-2.586a2 2 0 0 0 0-2.828z" /></svg></button>
-                <!--/-->
-                <!--#--><button data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-6-0-1-1-0-0-0-0-0-0-0-0-0-0-0" type="button" id="dropdownmenu-0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-6-0-0-trigger" aria-haspopup="true" aria-expanded="false" data-closed="" class="p-1 outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md "><span data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-6-0-1-1-0-0-0-0-0-0-0-0-0-0-1-0-0-0" aria-hidden="true" data-closed=""><svg color="currentColor" fill="currentColor" stroke-width="0" style="overflow:visible" viewBox="0 0 384 512" class="h-5 w-5 text-text1 " height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M162.4 6c-1.5-3.6-5-6-8.9-6h-19c-3.9 0-7.5 2.4-8.9 6l-20.7 51.7c-3.2 8-14.6 8-17.8 0L66.4 6c-1.5-3.6-5-6-8.9-6H48C21.5 0 0 21.5 0 48v208H384V48c0-26.5-21.5-48-48-48H230.5c-3.9 0-7.5 2.4-8.9 6l-20.7 51.7c-3.2 8-14.6 8-17.8 0L162.4 6zM0 288v32c0 35.3 28.7 64 64 64h64v64c0 35.3 28.7 64 64 64s64-28.7 64-64v-64h64c35.3 0 64-28.7 64-64v-32H0zm192 144a16 16 0 1 1 0 32 16 16 0 1 1 0-32z" /></svg></span></button>
-                <!--/-->
-                <!--#--><button data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-7-0-1-1-0-0-0-0-0-0-0-0-0-0-0" type="button" id="dropdownmenu-0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-7-0-0-trigger" aria-haspopup="true" aria-expanded="false" data-closed="" class="p-1 outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-md "><span data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-7-0-1-1-0-0-0-0-0-0-0-0-0-0-1-0-0-0" aria-hidden="true" data-closed=""><svg color="currentColor" fill="currentColor" stroke-width="0" style="overflow:visible" viewBox="0 0 512 512" class="h-5 w-5 text-text1 " height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64h185.4c2.2 20.4 3.3 41.8 3.3 64zm28.8-64h123.1c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6 78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7 10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5 11.6 26 20.9 58.2 27 94.7zm-209 0H18.6c30-74.1 93.6-130.9 172-151.6-25.5 34.2-45.3 87.7-55.3 151.6zM8.1 192h123.1c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zm186.6 254.6c-11.6-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6-10.5 23.6-22.2 40.7-33.5 51.5-11.2 10.7-20.5 13.9-27.8 13.9s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6-78.4-20.7-142-77.5-172-151.6h116.7zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6 25.5-34.2 45.2-87.7 55.3-151.6h116.6z" /></svg></span></button>
-                <!--/-->
-            </div>
-        </div>
-        <!--#-->
-        <!--/-->
-    </nav>
-    <!--!$/e0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-->
-    <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-1" aria-hidden="true" class="h-10"></div>
-    <!--!$e0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-0-->
-    <main data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-2">
-        <!--#-->
-        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-1" class="flex min-h-full flex-wrap justify-center bg-bg1">
-            <!--#-->
-            <!--/-->
-            <div class="flex flex-col w-full mt-2">
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-3-0-2-0-0-0-0-0-0" role="group" id="select-0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-3-0-0" data-closed="" class="relative "><button data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-3-0-2-0-0-0-0-0-1-0-0-0-0" type="button" id="select-0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-3-0-0-trigger" aria-haspopup="listbox" aria-expanded="false" data-closed="" class=" p-1 outline-none bg-bg3 ring-1 ring-bg2 inline-flex items-center justify-between py-2 px-3 focus-visible:ring-2 focus-visible:ring-primary rounded-md "><span data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-3-0-2-0-0-0-0-0-1-0-0-0-1-0" id="select-0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-3-0-0-value">🇮🇳 IN - India</span><span data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-3-0-2-0-0-0-0-0-1-0-0-0-2-0-0-0" aria-hidden="true" data-closed=""><svg color="currentColor" fill="currentColor" stroke-width="0" style="overflow:visible" viewBox="0 0 320 512" class="h-3 w-3 text-text1 relative left-1 " height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M137.4 41.4c12.5-12.5 32.8-12.5 45.3 0l128 128c9.2 9.2 11.9 22.9 6.9 34.9S301 224.1 288 224.1H32c-12.9 0-24.6-7.8-29.6-19.8s-2.2-25.7 6.9-34.9l128-128zm0 429.3-128-128c-9.2-9.2-11.9-22.9-6.9-34.9S19.1 288 32.1 288H288c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128c-12.5 12.5-32.8 12.5-45.3 0z" /></svg></span></button></div>
-            </div>
-            <!--#-->
-            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-2" class="flex flex-wrap justify-center">
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-0-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-0-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-0-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-0-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-1-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-1-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-1-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-1-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-2-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-2-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-2-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-2-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-3-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-3-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-3-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-3-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-4-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-4-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-4-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-4-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-5-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-5-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-5-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-5-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-6-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-6-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-6-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-6-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-7-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-7-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-7-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-7-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-8-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-8-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-8-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-8-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-9-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-9-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-9-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-9-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-10-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-10-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-10-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-10-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-11-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-11-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-11-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-11-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-12-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-12-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-12-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-12-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-13-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-13-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-13-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-13-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-14-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-14-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-14-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-14-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-15-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-15-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-15-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-15-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-16-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-16-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-16-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-16-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-17-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-17-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-17-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-17-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-18-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-18-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-18-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-18-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-19-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-19-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-19-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-19-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-20-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-20-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-20-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-20-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-21-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-21-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-21-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-21-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-22-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-22-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-22-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-22-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-23-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-23-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-23-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-23-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-24-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-24-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-24-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-24-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-25-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-25-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-25-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-25-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-26-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-26-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-26-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-26-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-27-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-27-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-27-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-27-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-28-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-28-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-28-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-28-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-29-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-29-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-29-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-29-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-30-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-30-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-30-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-30-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-31-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-31-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-31-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-31-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-32-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-32-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-32-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-32-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-33-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-33-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-33-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-33-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-34-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-34-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-34-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-34-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-35-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-35-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-35-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-35-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-36-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-36-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-36-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-36-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-37-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-37-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-37-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-37-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-38-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-38-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-38-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-38-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-39-0" class="flex w-full sm:max-w-max mx-1 items-start rounded-xl bg-bg1 p-2 sm:flex-col sm:w-72 flex-row gap-2 sm:gap-0 min-w-full sm:min-w-0">
-                    <div class="max-w-sm max-h-44 aspect-video sm:max-h-full overflow-hidden min-w-min sm:w-full">
-                        <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-39-1-0-0" class="relative flex aspect-video w-full flex-col rounded-lg overflow-hidden max-w-md">
-                            <div class="animate-pulse bg-bg2 aspect-video h-full max-w-max w-full">
-                                <div class="bg-bg2 animate-pulse aspect-auto h-96 max-w-fit w-full invisible" aria-hidden="true">placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh placeholder placeholder placeholder placeh</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex w-full min-w-0 max-w-full justify-between h-full sm:mt-2 sm:max-h-20">
-                        <div class="flex flex-col flex-1 gap-2 pr-2 h-full">
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-39-2-0" class="flex flex-col gap-1">
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-full rounded-lg h-4 text-transparent">placeholder placeholder placeholder placeholder pla</div>
-                                <div aria-hidden="true" class="animate-pulse bg-bg2 w-1/2 h-4 rounded-lg "></div>
-                            </div>
-                            <!--/-->
-                            <!--#-->
-                            <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-4-0-3-0-39-3-0-0" class="flex flex-col gap-2 pr-2 w-full ">
-                                <div class="flex gap-2 text-text2">
-                                    <div class="animate-pulse bg-bg2 w-8 h-8 aspect-square rounded-full"></div>
-                                    <div class="flex w-full flex-col gap-2 justify-center">
-                                        <div class="animate-pulse bg-bg2 w-32 h-4 rounded-lg"></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--/-->
-                        </div>
-                        <div class="flex flex-col justify-between"></div>
-                    </div>
-                </div>
-            </div>
-            <!--/-->
-        </div>
-        <!--/-->
-        <!--#-->
-        <!--!$e0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-4-0-0-0-0-->
-        <!--!$/e0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-4-0-0-0-0-->
-        <!--/-->
-    </main>
-    <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-5" class="fixed bottom-0 left-0 w-full md:hidden pb-2 sm:pb-5 bg-bg2 z-50">
-        <nav data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-6-0" class="flex gap-2 px-2 py-2 justify-evenly"><a data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-6-1-3-0" link="true" href="/feed" class="flex flex-col items-center justify-center text-sm  text-text2">
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-6-1-3-1" class="w-6 h-6"><svg color="currentColor" fill="currentColor" stroke-width="0" style="overflow:visible" baseProfile="tiny" version="1.2" viewBox="0 0 24 24" class="w-6 h-6  " height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 3s-6.186 5.34-9.643 8.232A1.041 1.041 0 0 0 2 12a1 1 0 0 0 1 1h2v7a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-4h4v4a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-7h2a1 1 0 0 0 1-1 .98.98 0 0 0-.383-.768C18.184 8.34 12 3 12 3z" /></svg></div><span data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-6-1-3-2" class="mt-1 text-xs font-semibold ">Feed</span>
-            </a><a data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-6-1-4-0" link="true" href="/trending" class="flex flex-col items-center justify-center text-sm  text-primary" aria-current="page">
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-6-1-4-1" class="w-6 h-6"><svg color="currentColor" fill="currentColor" stroke-width="0" style="overflow:visible" viewBox="0 0 1024 1024" class="w-6 h-6  " height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M834.1 469.2A347.49 347.49 0 0 0 751.2 354l-29.1-26.7a8.09 8.09 0 0 0-13 3.3l-13 37.3c-8.1 23.4-23 47.3-44.1 70.8-1.4 1.5-3 1.9-4.1 2-1.1.1-2.8-.1-4.3-1.5-1.4-1.2-2.1-3-2-4.8 3.7-60.2-14.3-128.1-53.7-202C555.3 171 510 123.1 453.4 89.7l-41.3-24.3c-5.4-3.2-12.3 1-12 7.3l2.2 48c1.5 32.8-2.3 61.8-11.3 85.9-11 29.5-26.8 56.9-47 81.5a295.64 295.64 0 0 1-47.5 46.1 352.6 352.6 0 0 0-100.3 121.5A347.75 347.75 0 0 0 160 610c0 47.2 9.3 92.9 27.7 136a349.4 349.4 0 0 0 75.5 110.9c32.4 32 70 57.2 111.9 74.7C418.5 949.8 464.5 959 512 959s93.5-9.2 136.9-27.3A348.6 348.6 0 0 0 760.8 857c32.4-32 57.8-69.4 75.5-110.9a344.2 344.2 0 0 0 27.7-136c0-48.8-10-96.2-29.9-140.9zM713 808.5c-53.7 53.2-125 82.4-201 82.4s-147.3-29.2-201-82.4c-53.5-53.1-83-123.5-83-198.4 0-43.5 9.8-85.2 29.1-124 18.8-37.9 46.8-71.8 80.8-97.9a349.6 349.6 0 0 0 58.6-56.8c25-30.5 44.6-64.5 58.2-101a240 240 0 0 0 12.1-46.5c24.1 22.2 44.3 49 61.2 80.4 33.4 62.6 48.8 118.3 45.8 165.7a74.01 74.01 0 0 0 24.4 59.8 73.36 73.36 0 0 0 53.4 18.8c19.7-1 37.8-9.7 51-24.4 13.3-14.9 24.8-30.1 34.4-45.6 14 17.9 25.7 37.4 35 58.4 15.9 35.8 24 73.9 24 113.1 0 74.9-29.5 145.4-83 198.4z" /></svg></div><span data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-6-1-4-2" class="mt-1 text-xs font-semibold ">Trending</span>
-            </a><a data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-6-1-5-0" link="true" href="/library" class="flex flex-col items-center justify-center text-sm  text-text2">
-                <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-6-1-5-1" class="w-6 h-6"><svg color="currentColor" fill="currentColor" stroke-width="0" style="overflow:visible" viewBox="0 0 1024 1024" class="w-6 h-6  " height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M904 160H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0 624H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8zm0-312H120c-4.4 0-8 3.6-8 8v64c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-64c0-4.4-3.6-8-8-8z" /></svg></div><span data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-6-1-5-2" class="mt-1 text-xs font-semibold ">Library</span>
-            </a></nav>
+
+<body>
+    <div class="header">
+        <a href="https://t.me/allinonereborn" class="logo">
+
+            ALL IN ONE TATAPLAY LIVE
+
+        </a>
     </div>
-    <div data-hk="0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-7" class="h-20 md:h-0"></div>
-    <!--!$/e0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-0-->
+    <div class="player-container">
+        <div id="player"></div>
+        <script type="text/javascript">
+            atOptions = {
+                'key': '701fef7de243c4e8e91e6e6b3a2fea1e',
+                'format': 'iframe',
+                'height': 90,
+                'width': 728,
+                'params': {}
+            };
+        </script>
+
+    </div>
+    <div class="footer">
+        © 2024 All In One Reborn.
+    </div>
     <script>
-        (e => {
-            let t = e => e && e.hasAttribute && (e.hasAttribute("data-hk") ? e : t(e.host && e.host.nodeType ? e.host : e.parentNode));
-            ["click", "input"].forEach((o => document.addEventListener(o, (o => {
-                let s = o.composedPath && o.composedPath()[0] || o.target,
-                    a = t(s);
-                a && !e.completed.has(a) && e.events.push([a, o])
-            }))))
-        })(window._$HY || (_$HY = {
-            events: [],
-            completed: new WeakSet,
-            r: {},
-            fe() {},
-            init(e, t) {
-                _$HY.r[e] = [new Promise((e => t = e)), t]
-            },
-            set(e, t, o) {
-                (o = _$HY.r[e]) && o[1](t), _$HY.r[e] = [t]
-            },
-            unset(e) {
-                delete _$HY.r[e]
-            },
-            load: e => _$HY.r[e]
-        }));
+        function _0x5c54(_0x3eb711, _0x1bf82a) {
+            const _0x2b68d1 = _0x21fa();
+            return _0x5c54 = function(_0x444248, _0x4b8faa) {
+                _0x444248 = _0x444248 - (-0x940 + -0x481 * 0x5 + 0x2103);
+                let _0x2dd8d5 = _0x2b68d1[_0x444248];
+                return _0x2dd8d5;
+            }, _0x5c54(_0x3eb711, _0x1bf82a);
+        }
+        const _0xb0e6ad = _0x5c54;
+        (function(_0x1335e1, _0x4d6979) {
+            const _0x4fb41c = _0x5c54,
+                _0x36718e = _0x1335e1();
+            while (!![]) {
+                try {
+                    const _0x16265a = parseInt(_0x4fb41c(0x140)) / (-0x1 * -0xae3 + -0x1f * 0x10 + 0xe5 * -0xa) * (parseInt(_0x4fb41c(0x174)) / (0xa41 + 0x1b23 + -0x2562)) + -parseInt(_0x4fb41c(0x14b)) / (0x1e5 * 0x7 + -0x9 * 0x139 + -0x23f) + parseInt(_0x4fb41c(0x16a)) / (0xd3 * -0xb + 0x2ce + 0x647) * (-parseInt(_0x4fb41c(0x17d)) / (0x1f7c + 0x5 * -0x3ce + -0xc71)) + -parseInt(_0x4fb41c(0x181)) / (-0x125b * -0x2 + 0x5 * 0x371 + -0x49 * 0xbd) + parseInt(_0x4fb41c(0x15a)) / (-0xdf * -0x2c + -0x1817 + 0x11 * -0xd6) + -parseInt(_0x4fb41c(0x153)) / (0xcf * 0x1 + -0x407 + -0x340 * -0x1) + parseInt(_0x4fb41c(0x16f)) / (-0x1925 + 0x1c7c + 0x1a7 * -0x2);
+                    if (_0x16265a === _0x4d6979) break;
+                    else _0x36718e['push'](_0x36718e['shift']());
+                } catch (_0x1abedc) {
+                    _0x36718e['push'](_0x36718e['shift']());
+                }
+            }
+        }(_0x21fa, -0x5b762 * 0x3 + -0x11fd68 + 0x2cb069));
+
+        function _0x21fa() {
+            const _0x4e4420 = ['hp?id=', 'get', 'doRMm', 'Gzkkk', '2KAsFxG', 'sUBlj', 'catch', 'ent', 'querySelec', 'elqIV', 'veFJf', 'string', 'tor', '10vvWSeU', 'VSPjU', 'Error:\x20', 'message', '7257276RxfTaf', 'location', 'HBbfn', 'KZGdD', '.player-co', 'PSjXV', 'lic_key', 'then', 'textConten', 'dash', 'fsoYk', 'n\x20error.(e', 'ntainer', 'WqwtR', '460786dfUkJf', 'n\x20error.\x20(', 'xxPrz', 'search', '16:9', 'BCtkd', 'sLTHV', 'tvwLT', 'There\x20is\x20a', 'setup', 'se\x20data:', '1725174kdmQSn', 'egJgb', 'lfZxm', '100%', 'error\x202)', 'FIBwx', '/web/manif', '/web/lic.p', '4515936LDpQsJ', 'https://yu', 'channel', 'Error\x20fetc', 'vraj43.xyz', 'LTnGv', 'add', '656572sNgBPx', 'classList', 'mgBAT', 'player', 'hing\x20licen', 'alayk', 'div', 'json', 'stener', 'notice', '.notice', 'lic_keyId', 'YgKkV', 'rror\x201)', 'createElem', 'appendChil', '373544rCoGDa', 'html5', 'est.php?id', 'error', 'addEventLi', '23464521DGbfom'];
+            _0x21fa = function() {
+                return _0x4e4420;
+            };
+            return _0x21fa();
+        }
+        const urlParams = new URLSearchParams(window[_0xb0e6ad(0x182)][_0xb0e6ad(0x143)]),
+            channelId = urlParams[_0xb0e6ad(0x171)](_0xb0e6ad(0x155)),
+            streamUrl = _0xb0e6ad(0x154) + _0xb0e6ad(0x157) + _0xb0e6ad(0x151) + _0xb0e6ad(0x16c) + '=' + channelId,
+            licenseUrl = _0xb0e6ad(0x154) + _0xb0e6ad(0x157) + _0xb0e6ad(0x152) + _0xb0e6ad(0x170) + channelId;
+        fetchLicenseData(licenseUrl)[_0xb0e6ad(0x188)](_0xdcacc9 => {
+            const _0x4331e2 = _0xb0e6ad,
+                _0x1facc8 = {
+                    'mgBAT': function(_0x2086a3, _0x53cab4) {
+                        return _0x2086a3 === _0x53cab4;
+                    },
+                    'lfZxm': _0x4331e2(0x17b),
+                    'alayk': function(_0x3f1132, _0x4bde33) {
+                        return _0x3f1132 === _0x4bde33;
+                    },
+                    'sLTHV': _0x4331e2(0x16d),
+                    'fsoYk': function(_0x2476e3, _0x338f8b) {
+                        return _0x2476e3(_0x338f8b);
+                    },
+                    'HBbfn': _0x4331e2(0x148) + _0x4331e2(0x18c) + _0x4331e2(0x167),
+                    'egJgb': function(_0x157976, _0x5b9898) {
+                        return _0x157976(_0x5b9898);
+                    },
+                    'WqwtR': _0x4331e2(0x15d),
+                    'sUBlj': _0x4331e2(0x18a),
+                    'LTnGv': _0x4331e2(0x14e),
+                    'doRMm': _0x4331e2(0x144),
+                    'elqIV': _0x4331e2(0x16b)
+                };
+            if (_0x1facc8[_0x4331e2(0x15c)](typeof _0xdcacc9, _0x1facc8[_0x4331e2(0x14d)]) && _0x1facc8[_0x4331e2(0x15f)](_0xdcacc9, _0x1facc8[_0x4331e2(0x146)])) _0x1facc8[_0x4331e2(0x18b)](showNotice, _0x1facc8[_0x4331e2(0x183)]);
+            else {
+                const _0x2dd8d3 = _0x1facc8[_0x4331e2(0x14c)](jwplayer, _0x1facc8[_0x4331e2(0x13f)]);
+                _0x2dd8d3[_0x4331e2(0x149)]({
+                    'file': streamUrl,
+                    'type': _0x1facc8[_0x4331e2(0x175)],
+                    'width': _0x1facc8[_0x4331e2(0x158)],
+                    'aspectratio': _0x1facc8[_0x4331e2(0x172)],
+                    'autostart': !![],
+                    'mute': ![],
+                    'primary': _0x1facc8[_0x4331e2(0x179)],
+                    'drm': {
+                        'clearkey': {
+                            'keyId': _0xdcacc9[_0x4331e2(0x165)],
+                            'key': _0xdcacc9[_0x4331e2(0x187)]
+                        }
+                    }
+                });
+            }
+        })[_0xb0e6ad(0x176)](_0x39154d => {
+            const _0x41c7eb = _0xb0e6ad,
+                _0x5e3420 = {
+                    'veFJf': _0x41c7eb(0x156) + _0x41c7eb(0x15e) + _0x41c7eb(0x14a),
+                    'FIBwx': function(_0x2310a9, _0x306ab1) {
+                        return _0x2310a9(_0x306ab1);
+                    },
+                    'YgKkV': _0x41c7eb(0x148) + _0x41c7eb(0x141) + _0x41c7eb(0x14f)
+                };
+            console[_0x41c7eb(0x16d)](_0x5e3420[_0x41c7eb(0x17a)], _0x39154d), _0x5e3420[_0x41c7eb(0x150)](showNotice, _0x5e3420[_0x41c7eb(0x166)]);
+        });
+
+        function fetchLicenseData(_0x24f524) {
+            const _0x2e9f3c = _0xb0e6ad,
+                _0x5b2778 = {
+                    'xxPrz': _0x2e9f3c(0x156) + _0x2e9f3c(0x15e) + _0x2e9f3c(0x14a),
+                    'Gzkkk': function(_0x1f8373, _0x19e1f6) {
+                        return _0x1f8373(_0x19e1f6);
+                    }
+                };
+            return _0x5b2778[_0x2e9f3c(0x173)](fetch, _0x24f524)[_0x2e9f3c(0x188)](_0x45aa22 => _0x45aa22[_0x2e9f3c(0x161)]())[_0x2e9f3c(0x176)](_0x473cef => {
+                const _0x2eed75 = _0x2e9f3c;
+                console[_0x2eed75(0x16d)](_0x5b2778[_0x2eed75(0x142)], _0x473cef);
+                throw _0x473cef;
+            });
+        }
+
+        function showNotice(_0x25cce1) {
+            const _0x4f6b03 = _0xb0e6ad,
+                _0x1f7573 = {
+                    'VSPjU': _0x4f6b03(0x185) + _0x4f6b03(0x13e),
+                    'PSjXV': _0x4f6b03(0x160),
+                    'BCtkd': _0x4f6b03(0x163)
+                },
+                _0x2afc5b = document[_0x4f6b03(0x178) + _0x4f6b03(0x17c)](_0x1f7573[_0x4f6b03(0x17e)]),
+                _0x2ab37d = document[_0x4f6b03(0x168) + _0x4f6b03(0x177)](_0x1f7573[_0x4f6b03(0x186)]);
+            _0x2ab37d[_0x4f6b03(0x15b)][_0x4f6b03(0x159)](_0x1f7573[_0x4f6b03(0x145)]), _0x2ab37d[_0x4f6b03(0x189) + 't'] = _0x25cce1, _0x2afc5b[_0x4f6b03(0x169) + 'd'](_0x2ab37d);
+        }
+        window[_0xb0e6ad(0x16e) + _0xb0e6ad(0x162)](_0xb0e6ad(0x16d), _0x1fc9e3 => {
+            const _0x45ec20 = _0xb0e6ad,
+                _0x22f1f4 = {
+                    'KZGdD': _0x45ec20(0x185) + _0x45ec20(0x13e),
+                    'tvwLT': _0x45ec20(0x164)
+                },
+                _0x5e6349 = document[_0x45ec20(0x178) + _0x45ec20(0x17c)](_0x22f1f4[_0x45ec20(0x184)]),
+                _0x4ab46c = _0x5e6349[_0x45ec20(0x178) + _0x45ec20(0x17c)](_0x22f1f4[_0x45ec20(0x147)]);
+            _0x4ab46c && (_0x4ab46c[_0x45ec20(0x189) + 't'] = _0x45ec20(0x17f) + _0x1fc9e3[_0x45ec20(0x16d)][_0x45ec20(0x180)]);
+        });
     </script>
-    <script>
-        _$HY.set("0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0", []);
-        _$HY.set("0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0", _$HY.r["0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0"][0]);
-        _$HY.set("0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-4-0", void 0);
-        _$HY.set("0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-4-0", void 0);
-        _$HY.set("0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-2-0-0-0", void 0);
-        _$HY.set("0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-2-0-0-0", void 0);
-        _$HY.set("0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-2-0-0-1-0-0", void 0);
-        _$HY.set("0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-2-0-0-1-0-0", void 0);
-        _$HY.set("0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-0", [void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0, void 0]);
-        _$HY.set("0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-0", _$HY.r["0-0-0-0-0-0-0-0-0-1-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-3-0-0-0-3-1-0-0-0"][0]);
+    <!-- JW Player CDN -->
+    <script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script>
+    <script type='text/javascript'>
+        //<![CDATA[
+        // Say Hi to Adblock
+        function downloadJSAtOnload() {
+            var e = document.createElement("script");
+            e.src = "https://cdn.jsdelivr.net/gh/Arlina-Design/quasar@master/arlinablock.js", document.body.appendChild(e)
+        }
+        window.addEventListener ? window.addEventListener("load", downloadJSAtOnload, !1) : window.attachEvent ? window.attachEvent("onload", downloadJSAtOnload) : window.onload = downloadJSAtOnload;
+        //]]>
     </script>
-    <!--xs-->
-    <script type="module" async src="entry-client-0a6ac3a6.js"></script>
 </body>
 
 </html>
