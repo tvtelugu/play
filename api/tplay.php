@@ -11,7 +11,8 @@
             margin: 0;
             padding: 0;
             background: #000;
-            position: absolute;
+            height: 100%;
+            width: 100%;
     
         }
 
