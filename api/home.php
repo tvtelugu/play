@@ -6,6 +6,7 @@
     <title>🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™ || 𝐓𝐀𝐓𝐀𝐏𝐋𝐀𝐘 </title>
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico">
     <link href="https://fonts.googleapis.com/css2?family=Wittgenstein:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         body {
             font-family: 'Wittgenstein', serif;
@@ -272,87 +273,115 @@
             display: flex;
         }
 
-        .video-popup .video-frame {
+        .video-popup .video-container {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
             width: 80%;
-            height: 80%;
             max-width: 800px;
-            max-height: 450px;
-            background-color: #000;
+            padding: 10px;
         }
 
-        .video-popup .close-popup {
+        .video-popup .video-container iframe {
+            width: 100%;
+            height: 450px;
+        }
+
+        .video-popup .close-btn {
             position: absolute;
-            top: 20px;
-            right: 20px;
+            top: 10px;
+            right: 10px;
             background: #e74c3c;
             color: #fff;
             border: none;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 30px;
+            height: 30px;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             cursor: pointer;
         }
 
-        .loading-overlay {
+        /* New Loading Animation */
+        .video-popup .loading-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.5);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 1;
+            z-index: 10;
+        }
+
+        .video-popup .loading-overlay img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 10px;
+        }
+
+        .video-popup .loading-overlay .loader {
+            display: flex;
+            gap: 10px;
         }
     </style>
 </head>
 <body>
+    <div class="loader-container" id="loader-container">
+        <div class="loader">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
     <h1>
-        <img src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.png" class="title-logo">
-        🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™ || 𝐓𝐀𝐓𝐀𝐏𝐋𝐀𝐘 
+        <img src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVTELUGU-B.png" alt="Title Logo" class="title-logo">
+        🕊 𝐓𝐀𝐓𝐀𝐏𝐋𝐀𝐘
     </h1>
     <div class="controls">
         <div class="select-container">
-            <span class="material-icons">category</span>
+            <i class="material-icons">category</i>
             <select id="genre-select">
                 <option value="">All Genres</option>
             </select>
         </div>
         <div class="search-container">
-            <span class="material-icons">search</span>
-            <input type="text" id="search-bar" placeholder="Search...">
+            <i class="material-icons">search</i>
+            <input type="text" id="search-bar" placeholder="Search channels...">
         </div>
     </div>
-    <div id="grid-container" class="grid-container"></div>
-
-    <div id="loader-container" class="loader-container">
-        <div class="loader">
-            <div class="dot"></div>
-            <div class="dot"></div>
-            <div class="dot"></div>
-        </div>
-        <div style="color: #fff; margin-top: 10px;">Loading channels...</div>
+    <div class="grid-container" id="grid-container">
+        <!-- Channel cards will be dynamically inserted here -->
     </div>
-
     <footer>
-        <p class="footer-text">© 2024 TVTelugu. All rights reserved.</p>
+        <p class="footer-text">© 2024 🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™. All rights reserved.</p>
     </footer>
 
     <!-- Video Popup -->
-    <div id="video-popup" class="video-popup">
-        <div class="loading-overlay" id="loading-overlay">
-            <div class="loader">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
+    <div class="video-popup" id="video-popup">
+        <div class="video-container">
+            <button class="close-btn" id="close-popup">✖</button>
+            <div class="loading-overlay" id="loading-overlay">
+                <img src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico" alt="Site Logo">
+                <div class="loader">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
             </div>
+            <iframe id="video-frame" src="" frameborder="0" allowfullscreen></iframe>
         </div>
-        <iframe id="video-frame" class="video-frame" src="" frameborder="0" allowfullscreen></iframe>
-        <button id="close-popup" class="close-popup">&times;</button>
     </div>
 
     <script>
@@ -415,12 +444,7 @@
 
         // Fetch channels and initialize
         fetch('channel.json')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
+            .then(response => response.json())
             .then(channelsData => {
                 const gridContainer = document.getElementById('grid-container');
 
@@ -502,10 +526,6 @@
 
                 loadState();
                 renderChannels();
-            })
-            .catch(error => {
-                console.error('Error loading channels:', error);
-                hideLoader(); // Ensure the loader is hidden even if there's an error
             });
     </script>
 </body>
