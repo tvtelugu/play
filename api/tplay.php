@@ -7,12 +7,14 @@
     <title>🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™</title>
     <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico">
     <style>
+        body {
+            overflow: hidden; /* Prevent scrollbars */
+        }
           #player-container {
             position: absolute;
             padding: 0;
             width: 100% !important;
             height: 100% !important;
-            overflow: hidden; /* Prevent scrollbars */
         }
     </style>
 </head>
