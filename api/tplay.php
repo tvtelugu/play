@@ -11,6 +11,7 @@
             position: absolute;
             width: 100% !important;
             height: 100% !important;
+            overflow: hidden; /* Prevent scrollbars */
         }
 
         .error-message {
