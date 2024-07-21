@@ -85,7 +85,7 @@
     </div>
     <script>
         async function fetchChannels() {
-            const response = await fetch('channel.json');
+            const response = await fetch('https://toxicify-tpkeys.vercel.app/data/tplay.json');
             const data = await response.json();
             const channelGrid = document.getElementById('channel-grid');
             
