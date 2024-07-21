@@ -9,18 +9,13 @@
         body {
             margin: 0;
             padding: 0;
-            background: radial-gradient(circle, #0f0c29, #24243e);
-            color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+            background: #000;
+
         }
 
         .container {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            min-height: 100vh;
-            padding: 20px
+            
         }
 
         #player-container {
