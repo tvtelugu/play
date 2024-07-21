@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Channel Grid</title>
+     <title>🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™ || 𝐓𝐀𝐓𝐀𝐏𝐋𝐀𝐘 </title>
+    <link rel="shortcut icon" href="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -13,9 +14,9 @@
             background-image: url('https://images.pexels.com/photos/4840134/pexels-photo-4840134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); /* Replace with your image URL */
             background-size: cover;
             background-position: center;
-            overflow: hidden; /* Prevent body overflow */
             height: 100vh; /* Ensure body takes full viewport height */
-            position: relative; /* Required for positioning the blur effect */
+            overflow: hidden; /* Prevent body overflow */
+            position: relative;
         }
 
         .background-blur {
@@ -42,32 +43,20 @@
             display: flex;
             flex-direction: column;
             align-items: center; /* Center items horizontally */
-            box-sizing: border-box; /* Ensure padding is included in width */
         }
 
         .header img {
-            width: 100px; /* Adjust size as needed */
+            width: 120px; /* Adjust size as needed */
             height: auto; /* Maintain aspect ratio */
-            margin-bottom: 30px; /* Adjust spacing below the logo */
-        }
-
-        .header .text-box {
-            margin: 10px 0;
-            padding: 5px;
-            border-radius: 15px;
-            background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text visibility */
-            backdrop-filter: blur(8px); /* Blur effect */
-            width: 100%; /* Adjust width as needed */
-            max-width: 720px; /* Adjust max-width as needed */
-            box-sizing: border-box;
+            margin-bottom: 0px;
         }
 
         .search-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 220px 20px 20px; /* Adjust margin to ensure it's below the header */
-            gap: 5px;
+            margin: 120px 20px 20px; /* Adjust margin to account for fixed header */
+            gap: 10px;
             position: relative;
             z-index: 1;
         }
@@ -104,14 +93,29 @@
             background-size: 24px;
         }
 
+        .header-text-box {
+    margin-top: 2px; /* Space for header and search container */
+    padding: 2px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8); /* Semi-transparent background for readability */
+    border-radius: 8px;
+    width: 80%; /* Adjust width as needed */
+    max-width: 800px; /* Adjust max-width as needed */
+    box-sizing: border-box;
+    position: relative;
+    z-index: 1;
+    margin: 20px auto 20px; /* Centering with auto margins */
+}
+
         .container {
             display: flex;
             justify-content: center;
             align-items: flex-start; /* Align items to the top for proper scrolling */
-            padding: 20px;
+            padding: 2px;
             overflow-y: auto; /* Enable scrolling within this container */
-            height: calc(100vh - 80px); /* Adjust height to fit within viewport minus header height */
-            margin-top: 120px; /* Adjust margin-top to ensure it's below the header */
+            height: calc(200vh - 20px); /* Adjust height to fit within viewport minus header, search container, and text box height */
+            margin-top: 10px; /* Adjust margin-top to account for fixed header and text box */
+
             box-sizing: border-box;
         }
 
@@ -166,6 +170,18 @@
         .channel-card:hover h3 {
             color: #0056b3;
         }
+
+        .footer {
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 0px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
     </style>
 </head>
 <body>
@@ -173,7 +189,7 @@
 
     <div class="header">
         <img src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVTELUGU-B.png" alt="Logo">
-            </div>
+    </div>
 
     <div class="search-container">
         <input type="text" id="search-bar" placeholder="Search channels...">
@@ -183,16 +199,21 @@
         </select>
     </div>
 
+    <div class="header-text-box">
+        <!-- Your text content here -->
+        <p>⚠️ 𝐍𝐨𝐭𝐞 : 𝐉𝐮𝐬𝐭 𝐢𝐧𝐬𝐭𝐚𝐥 𝐁𝐞𝐥𝐨𝐰 𝐩𝐥𝐚𝐲𝐞𝐫 𝐄𝐱𝐭𝐞𝐧𝐭𝐢𝐨𝐧 𝐭𝐨 𝐲𝐨𝐮𝐫 𝐂𝐡𝐫𝐨𝐦𝐞 𝐁𝐫𝐨𝐰𝐬𝐞𝐫 𝐅𝐨𝐫 𝐩𝐥𝐚𝐲𝐢𝐧𝐠 𝐂𝐡𝐚𝐧𝐧𝐞𝐥𝐬 💡</p>
+        <p><a href="https://chromewebstore.google.com/detail/videoplayer-mpdm3u8m3uepg/opmeopcambhfimffbomjgemehjkbbmji?hl=en-US&utm_source=ext_sidebar">🟢𝐂𝐥𝐢𝐜𝐤 𝐇𝐞𝐫𝐞 ▶️</a></p>
+    </div>
+
     <div class="container">
         <div id="channel-grid" class="channel-grid">
             <!-- Channels will be injected here by JavaScript -->
         </div>
-        <div class="text-box">
-            <!-- Your text content here -->
-              ⚠️ 𝐍𝐨𝐭𝐞 : 𝐉𝐮𝐬𝐭 𝐢𝐧𝐬𝐭𝐚𝐥 𝐁𝐞𝐥𝐨𝐰 𝐩𝐥𝐚𝐲𝐞𝐫 𝐄𝐱𝐭𝐞𝐧𝐭𝐢𝐨𝐧 𝐭𝐨 𝐲𝐨𝐮𝐫 𝐂𝐡𝐫𝐨𝐦𝐞 𝐁𝐫𝐨𝐰𝐬𝐞𝐫 𝐅𝐨𝐫 𝐩𝐥𝐚𝐲𝐢𝐧𝐠 𝐂𝐡𝐚𝐧𝐧𝐞𝐥𝐬 💡
-       <p> <a href="https://chromewebstore.google.com/detail/videoplayer-mpdm3u8m3uepg/opmeopcambhfimffbomjgemehjkbbmji?hl=en">🟢𝐂𝐥𝐢𝐜𝐤 𝐇𝐞𝐫𝐞 ▶️</a></p>
-        </div>
     </div>
+
+    <footer class="footer">
+        &copy; © 2024 🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™. All rights reserved.
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -209,7 +230,8 @@
                     channels = data;
                     populateGenres(data);
                     displayChannels(data);
-                });
+                })
+                .catch(error => console.error('Error fetching channel data:', error));
 
             function populateGenres(data) {
                 const genres = new Set(data.map(channel => channel.channel_genre));
