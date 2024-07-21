@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™ || 𝐓𝐀𝐓𝐀𝐏𝐋𝐀𝐘</title>
+    <title>🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™ || 𝐓𝐀𝐓𝐀𝐏𝐋𝐀𝐘 </title>
     <link rel="shortcut icon" href="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVtelugu.ico">
     <link href="https://fonts.googleapis.com/css2?family=Wittgenstein:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -119,6 +119,7 @@
             border-radius: 5px;
             overflow: hidden;
             text-align: center;
+            cursor: pointer;
         }
 
         .channel-logo {
@@ -201,6 +202,53 @@
             }
         }
 
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 700px;
+            position: relative;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-video {
+            width: 100%;
+            height: 400px;
+        }
+
         footer {
             margin-top: 40px;
             padding: 10px;
@@ -216,44 +264,6 @@
             margin: 0;
             font-size: 14px;
         }
-
-        /* Modal styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: rgba(0, 0, 0, 0.9);
-        }
-
-        .modal-content {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
     </style>
 </head>
 <body>
@@ -264,12 +274,10 @@
             <div class="dot"></div>
         </div>
     </div>
-
     <h1>
         <img src="https://raw.githubusercontent.com/tvtelugu/play/main/images/TVTELUGU-B.png" alt="Title Logo" class="title-logo">
         🕊 𝐓𝐀𝐓𝐀𝐏𝐋𝐀𝐘
     </h1>
-
     <div class="controls">
         <div class="select-container">
             <i class="material-icons">category</i>
@@ -282,29 +290,22 @@
             <input type="text" id="search-bar" placeholder="Search channels...">
         </div>
     </div>
-
     <div class="grid-container" id="grid-container">
         <!-- Channel cards will be dynamically inserted here -->
     </div>
-
     <footer>
         <p class="footer-text">© 2024 🕊𝐓𝐕𝐓𝐞𝐥𝐮𝐠𝐮™. All rights reserved.</p>
     </footer>
 
-    <!-- Modal Container -->
-    <div id="video-modal" class="modal">
+    <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <iframe id="video-iframe" allowfullscreen></iframe>
+            <iframe id="videoFrame" class="modal-video" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     </div>
 
     <script>
         const loaderContainer = document.getElementById('loader-container');
-        const modal = document.getElementById('video-modal');
-        const iframe = document.getElementById('video-iframe');
-        const closeModal = document.querySelector('.modal .close');
-
         function showLoader() {
             loaderContainer.style.display = 'flex';
         }
@@ -312,24 +313,6 @@
         function hideLoader() {
             loaderContainer.style.display = 'none';
         }
-
-        function openModal(videoUrl) {
-            iframe.src = videoUrl;
-            modal.style.display = 'block';
-        }
-
-        function closeModalFn() {
-            modal.style.display = 'none';
-            iframe.src = ''; // Stop video playback when closing
-        }
-
-        closeModal.addEventListener('click', closeModalFn);
-
-        window.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                closeModalFn();
-            }
-        });
 
         showLoader();
 
@@ -362,10 +345,6 @@
                         const channelCard = document.createElement('div');
                         channelCard.classList.add('channel-card');
 
-                        const channelLink = document.createElement('div'); // Changed to div
-                        channelLink.classList.add('channel-link');
-                        channelLink.dataset.videoUrl = `/api/tplay.php?id=${channel.channel_id}`; // Store URL in data attribute
-
                         const channelLogo = document.createElement('img');
                         channelLogo.src = channel.channel_logo;
                         channelLogo.alt = `${channel.channel_name} Logo`;
@@ -379,15 +358,16 @@
                         channelGenre.classList.add('channel-genre');
                         channelGenre.textContent = channel.channel_genre;
 
-                        channelLink.appendChild(channelLogo);
-                        channelCard.appendChild(channelLink);
+                        channelCard.appendChild(channelLogo);
                         channelCard.appendChild(channelName);
                         channelCard.appendChild(channelGenre);
                         gridContainer.appendChild(channelCard);
 
-                        // Add click event to channelLink div
-                        channelLink.addEventListener('click', function() {
-                            openModal(this.dataset.videoUrl);
+                        channelCard.addEventListener('click', () => {
+                            const videoFrame = document.getElementById('videoFrame');
+                            videoFrame.src = `/api/tplay.php?id=${channel.channel_id}`;
+                            const modal = document.getElementById('myModal');
+                            modal.style.display = 'flex';
                         });
                     });
 
@@ -399,6 +379,23 @@
 
                 renderChannels();
             });
+
+        const modal = document.getElementById('myModal');
+        const span = document.getElementsByClassName('close')[0];
+
+        span.onclick = function() {
+            modal.style.display = 'none';
+            const videoFrame = document.getElementById('videoFrame');
+            videoFrame.src = '';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+                const videoFrame = document.getElementById('videoFrame');
+                videoFrame.src = '';
+            }
+        }
     </script>
 </body>
 </html>
