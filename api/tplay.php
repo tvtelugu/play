@@ -77,9 +77,7 @@
                         key: videoConfig.key
                     }
                 },
-                width: "100%",
-                height: "20%",
-                stretching: "bestfit",
+                stretching: "flex",
                 autostart: true,
                 mute: false,
                 primary: "html5",
