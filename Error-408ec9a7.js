@@ -1,2 +1,0 @@
-import{g as s,b as i,i as r,a as c,aD as x,t as m}from"./entry-client-0a6ac3a6.js";const f=m('<div class="flex items-center justify-center flex-col gap-2 p-4"><!#><!/><pre class="max-h-96 overflow-auto">'),g=l=>(()=>{const e=s(f),n=e.firstChild,[t,a]=i(n.nextSibling),o=t.nextSibling;return r(e,c(x,{fill:"currentColor",class:"text-4xl text-red-600"}),t,a),r(o,()=>JSON.stringify(l.error,void 0,2)),e})();export{g as E};
-//# sourceMappingURL=Error-408ec9a7.js.map
